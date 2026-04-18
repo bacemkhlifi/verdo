@@ -4,7 +4,7 @@ const baseUrl =
   import.meta.env.VITE_API_URL ||
   (import.meta.env.DEV
     ? "https://verdo-back.onrender.com"
-    : "https://verdo-back.vercel.app/api/auth");
+    : "https://verdo-back.onrender.com/api/auth");
 
 const API_URL = baseUrl.endsWith("/") ? baseUrl : `${baseUrl}/`;
 
