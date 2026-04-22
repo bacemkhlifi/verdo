@@ -20,62 +20,7 @@
             </div>
         </div>
 
-        <!-- Integrated Farmland System Section -->
-        <div class="relative py-16 md:py-24 bg-gray-50" @click="handleOutsideClick">
-            <div class="container mx-auto px-4">
-                <div class="grid grid-cols-1 md:grid-cols-2 gap-16 items-start">
-                    <!-- Left Column -->
-                    <div class="bg-white p-8 rounded-2xl shadow-xl">
-                        <div class="max-w-xl">
-                            <div class="inline-block px-4 py-2 bg-orange-100 rounded-full mb-6">
-                                <h3 class="text-orange-500 font-semibold tracking-wide uppercase text-sm">{{
-                                    t('howItWorks.system.title') }}</h3>
-                            </div>
-                            <h2 class="text-3xl md:text-4xl font-bold text-gray-800 mb-6">{{
-                                t('howItWorks.system.subtitle') }}</h2>
-                            <p class="text-gray-600 leading-relaxed mb-8 text-lg">
-                                {{ t('howItWorks.system.description') }}
-                            </p>
-                            <div class="relative overflow-hidden rounded-2xl shadow-2xl">
-                                <img src="https://images.unsplash.com/photo-1625246333195-78d9c38ad449?q=80&w=1000&auto=format&fit=crop"
-                                    alt="Farm System Map"
-                                    class="w-full h-80 object-cover transform hover:scale-105 transition-transform duration-500" />
-                            </div>
-                        </div>
-                    </div>
-
-                    <!-- Right Column - Accordion -->
-                    <div class="space-y-4">
-                        <div v-for="(item, index) in accordionItems" :key="index"
-                            class="bg-white rounded-xl overflow-hidden shadow-lg hover:shadow-xl transition-shadow duration-300">
-                            <button @click.stop="toggleAccordion(index)"
-                                class="w-full px-8 py-6 flex justify-between items-center hover:bg-gray-50 transition-colors duration-200">
-                                <span class="text-lg font-semibold text-gray-700 flex items-center">
-                                    <span
-                                        class="w-12 h-12 flex items-center justify-center bg-orange-100 rounded-full mr-4">
-                                        <component :is="item.icon" class="w-6 h-6 text-orange-500" />
-                                    </span>
-                                    {{ item.title }}
-                                </span>
-                                <svg class="w-5 h-5 text-orange-500 transform transition-transform duration-300"
-                                    :class="{ 'rotate-180': openAccordionIndex === index }"
-                                    xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none"
-                                    stroke="currentColor">
-                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                                        d="M19 9l-7 7-7-7" />
-                                </svg>
-                            </button>
-                            <div v-if="openAccordionIndex === index"
-                                class="px-8 py-6 bg-orange-50/30 border-t border-orange-100">
-                                <p class="text-gray-600 leading-relaxed text-lg" v-html="item.content"></p>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-
-        <!-- Étude de l'opportunité Section -->
+        <!-- Process Section -->
         <div class="py-20 bg-gradient-to-br from-white via-gray-50 to-orange-50">
             <div class="container mx-auto px-4">
                 <div class="text-center mb-16">
@@ -83,195 +28,75 @@
                         <h3 class="text-orange-500 font-semibold tracking-wide uppercase text-2xl">{{
                             t('howItWorks.ourProcess.title') }}</h3>
                     </span>
-                    <p class="text-xl text-gray-600 max-w-3xl mx-auto">
-                        {{ t('howItWorks.ourProcess.description') }}
-                    </p>
                 </div>
 
-                <!-- Timeline Section -->
-                <div class="relative flex flex-col space-y-8 px-4">
-                    <!-- Timeline Line -->
-                    <div
-                        class="absolute left-8 top-0 bottom-0 w-1 bg-gradient-to-b from-orange-500/50 to-orange-300/50">
-                    </div>
-
+                <!-- 4 Steps Grid -->
+                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 mb-16">
                     <!-- Step 1 -->
-                    <div class="relative pl-24">
-                        <div
-                            class="absolute left-4 -translate-x-1/2 w-12 h-12 bg-orange-500 rounded-full flex items-center justify-center text-white font-bold text-xl shadow-lg border-4 border-white z-10">
+                    <div class="bg-white rounded-2xl p-6 shadow-lg hover:shadow-xl transition-all duration-300">
+                        <div class="w-12 h-12 bg-orange-500 rounded-full flex items-center justify-center text-white font-bold text-xl mb-4">
                             1
                         </div>
-                        <div class="bg-white rounded-2xl p-8 shadow-lg hover:shadow-xl transition-all duration-300">
-                            <h3 class="text-xl font-bold text-gray-900 mb-4">{{
-                                t('howItWorks.ourProcess.steps.step1.title') }}</h3>
-                            <p class="text-gray-600 leading-relaxed">
-                                - {{ t('howItWorks.ourProcess.steps.step1.description.part1') }}
-
-                                <br>
-                                - {{ t('howItWorks.ourProcess.steps.step1.description.part2') }}
-                            </p>
-                        </div>
+                        <h3 class="text-lg font-bold text-gray-900 mb-2">{{ t('howItWorks.ourProcess.step1.title') }}</h3>
+                        <p class="text-gray-600 text-sm">{{ t('howItWorks.ourProcess.step1.description') }}</p>
                     </div>
 
                     <!-- Step 2 -->
-                    <div class="relative pl-24">
-                        <div
-                            class="absolute left-4 -translate-x-1/2 w-12 h-12 bg-orange-500 rounded-full flex items-center justify-center text-white font-bold text-xl shadow-lg border-4 border-white z-10">
+                    <div class="bg-white rounded-2xl p-6 shadow-lg hover:shadow-xl transition-all duration-300">
+                        <div class="w-12 h-12 bg-orange-500 rounded-full flex items-center justify-center text-white font-bold text-xl mb-4">
                             2
                         </div>
-                        <div class="bg-white rounded-2xl p-8 shadow-lg hover:shadow-xl transition-all duration-300">
-                            <h3 class="text-xl font-bold text-gray-900 mb-4">{{
-                                t('howItWorks.ourProcess.steps.step2.title') }}</h3>
-                            <p class="text-gray-600 leading-relaxed">
-                                - {{ t('howItWorks.ourProcess.steps.step2.description.part1') }}
-                                <br>
-                                - {{ t('howItWorks.ourProcess.steps.step2.description.part2') }}
-                            </p>
-                        </div>
+                        <h3 class="text-lg font-bold text-gray-900 mb-2">{{ t('howItWorks.ourProcess.step2.title') }}</h3>
+                        <p class="text-gray-600 text-sm">{{ t('howItWorks.ourProcess.step2.description') }}</p>
                     </div>
 
                     <!-- Step 3 -->
-                    <div class="relative pl-24">
-                        <div
-                            class="absolute left-4 -translate-x-1/2 w-12 h-12 bg-orange-500 rounded-full flex items-center justify-center text-white font-bold text-xl shadow-lg border-4 border-white z-10">
+                    <div class="bg-white rounded-2xl p-6 shadow-lg hover:shadow-xl transition-all duration-300">
+                        <div class="w-12 h-12 bg-orange-500 rounded-full flex items-center justify-center text-white font-bold text-xl mb-4">
                             3
                         </div>
-                        <div class="bg-white rounded-2xl p-8 shadow-lg hover:shadow-xl transition-all duration-300">
-                            <h3 class="text-xl font-bold text-gray-900 mb-4">{{
-                                t('howItWorks.ourProcess.steps.step3.title') }}</h3>
-                            <p class="text-gray-600 leading-relaxed">
-                                - {{ t('howItWorks.ourProcess.steps.step3.description.part1') }}
-                            </p>
-                        </div>
+                        <h3 class="text-lg font-bold text-gray-900 mb-2">{{ t('howItWorks.ourProcess.step3.title') }}</h3>
+                        <p class="text-gray-600 text-sm">{{ t('howItWorks.ourProcess.step3.description') }}</p>
                     </div>
 
                     <!-- Step 4 -->
-                    <div class="relative pl-24">
-                        <div
-                            class="absolute left-4 -translate-x-1/2 w-12 h-12 bg-orange-500 rounded-full flex items-center justify-center text-white font-bold text-xl shadow-lg border-4 border-white z-10">
+                    <div class="bg-white rounded-2xl p-6 shadow-lg hover:shadow-xl transition-all duration-300">
+                        <div class="w-12 h-12 bg-orange-500 rounded-full flex items-center justify-center text-white font-bold text-xl mb-4">
                             4
                         </div>
-                        <div class="bg-white rounded-2xl p-8 shadow-lg hover:shadow-xl transition-all duration-300">
-                            <h3 class="text-xl font-bold text-gray-900 mb-4">{{
-                                t('howItWorks.ourProcess.steps.step4.title') }}</h3>
-                            <p class="text-gray-600 leading-relaxed">
-                                - {{ t('howItWorks.ourProcess.steps.step4.description.part1') }}
-                            </p>
-                        </div>
+                        <h3 class="text-lg font-bold text-gray-900 mb-2">{{ t('howItWorks.ourProcess.step4.title') }}</h3>
+                        <p class="text-gray-600 text-sm">{{ t('howItWorks.ourProcess.step4.description') }}</p>
                     </div>
+                </div>
 
-                    <!-- Step 5 -->
-                    <div class="relative pl-24">
-                        <div
-                            class="absolute left-4 -translate-x-1/2 w-12 h-12 bg-orange-500 rounded-full flex items-center justify-center text-white font-bold text-xl shadow-lg border-4 border-white z-10">
-                            5
+                <!-- Services Coming Soon -->
+                <div class="bg-white rounded-2xl p-8 shadow-lg max-w-4xl mx-auto">
+                    <h3 class="text-2xl font-bold text-gray-900 mb-6 text-center">{{ t('howItWorks.services.title') }}</h3>
+                    <p class="text-gray-600 mb-6 text-center">{{ t('howItWorks.services.description') }}</p>
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                        <div class="flex items-center text-gray-700">
+                            <svg class="w-5 h-5 text-orange-500 mr-3" fill="currentColor" viewBox="0 0 20 20">
+                                <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"/>
+                            </svg>
+                            {{ t('howItWorks.services.item1') }}
                         </div>
-                        <div class="bg-white rounded-2xl p-8 shadow-lg hover:shadow-xl transition-all duration-300">
-                            <h3 class="text-xl font-bold text-gray-900 mb-4">{{
-                                t('howItWorks.ourProcess.steps.step5.title') }}</h3>
-                            <p class="text-gray-600 leading-relaxed">
-                                - {{ t('howItWorks.ourProcess.steps.step5.description.part1') }}
-                                <br>
-                                - {{ t('howItWorks.ourProcess.steps.step5.description.part2') }}
-                            </p>
+                        <div class="flex items-center text-gray-700">
+                            <svg class="w-5 h-5 text-orange-500 mr-3" fill="currentColor" viewBox="0 0 20 20">
+                                <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"/>
+                            </svg>
+                            {{ t('howItWorks.services.item2') }}
                         </div>
-                    </div>
-
-                    <!-- Step 6 -->
-                    <div class="relative pl-24">
-                        <div
-                            class="absolute left-4 -translate-x-1/2 w-12 h-12 bg-orange-500 rounded-full flex items-center justify-center text-white font-bold text-xl shadow-lg border-4 border-white z-10">
-                            6
+                        <div class="flex items-center text-gray-700">
+                            <svg class="w-5 h-5 text-orange-500 mr-3" fill="currentColor" viewBox="0 0 20 20">
+                                <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"/>
+                            </svg>
+                            {{ t('howItWorks.services.item3') }}
                         </div>
-                        <div class="bg-white rounded-2xl p-8 shadow-lg hover:shadow-xl transition-all duration-300">
-                            <h3 class="text-xl font-bold text-gray-900 mb-4">{{
-                                t('howItWorks.ourProcess.steps.step6.title') }}</h3>
-                            <p class="text-gray-600 leading-relaxed">
-                                - {{ t('howItWorks.ourProcess.steps.step6.description.part1') }}
-                            </p>
-                        </div>
-                    </div>
-
-                    <!-- Step 7 -->
-                    <div class="relative pl-24">
-                        <div
-                            class="absolute left-4 -translate-x-1/2 w-12 h-12 bg-orange-500 rounded-full flex items-center justify-center text-white font-bold text-xl shadow-lg border-4 border-white z-10">
-                            7
-                        </div>
-                        <div class="bg-white rounded-2xl p-8 shadow-lg hover:shadow-xl transition-all duration-300">
-                            <h3 class="text-xl font-bold text-gray-900 mb-4">{{
-                                t('howItWorks.ourProcess.steps.step7.title') }}</h3>
-                            <p class="text-gray-600 leading-relaxed">
-                                - {{ t('howItWorks.ourProcess.steps.step7.description.part1') }}
-                                <br>
-                                - {{ t('howItWorks.ourProcess.steps.step7.description.part2') }}
-                            </p>
-                        </div>
-                    </div>
-
-                    <!-- Step 8 -->
-                    <div class="relative pl-24">
-                        <div
-                            class="absolute left-4 -translate-x-1/2 w-12 h-12 bg-orange-500 rounded-full flex items-center justify-center text-white font-bold text-xl shadow-lg border-4 border-white z-10">
-                            8
-                        </div>
-                        <div class="bg-white rounded-2xl p-8 shadow-lg hover:shadow-xl transition-all duration-300">
-                            <h3 class="text-xl font-bold text-gray-900 mb-4">{{
-                                t('howItWorks.ourProcess.steps.step8.title') }}</h3>
-                            <p class="text-gray-600 leading-relaxed">
-                                - {{ t('howItWorks.ourProcess.steps.step8.description.part1') }}
-                                <br>
-                                - {{ t('howItWorks.ourProcess.steps.step8.description.part2') }}
-                            </p>
-                        </div>
-                    </div>
-
-                    <!-- Step 9 -->
-                    <div class="relative pl-24">
-                        <div
-                            class="absolute left-4 -translate-x-1/2 w-12 h-12 bg-orange-500 rounded-full flex items-center justify-center text-white font-bold text-xl shadow-lg border-4 border-white z-10">
-                            9
-                        </div>
-                        <div class="bg-white rounded-2xl p-8 shadow-lg hover:shadow-xl transition-all duration-300">
-                            <h3 class="text-xl font-bold text-gray-900 mb-4">{{
-                                t('howItWorks.ourProcess.steps.step9.title') }}</h3>
-                            <p class="text-gray-600 leading-relaxed">
-                                - {{ t('howItWorks.ourProcess.steps.step9.description.part1') }}
-                            </p>
-                        </div>
-                    </div>
-
-                    <!-- Step 10 -->
-                    <div class="relative pl-24">
-                        <div
-                            class="absolute left-4 -translate-x-1/2 w-12 h-12 bg-orange-500 rounded-full flex items-center justify-center text-white font-bold text-xl shadow-lg border-4 border-white z-10">
-                            10
-                        </div>
-                        <div class="bg-white rounded-2xl p-8 shadow-lg hover:shadow-xl transition-all duration-300">
-                            <h3 class="text-xl font-bold text-gray-900 mb-4">{{
-                                t('howItWorks.ourProcess.steps.step10.title') }}</h3>
-                            <p class="text-gray-600 leading-relaxed">
-                                - {{ t('howItWorks.ourProcess.steps.step10.description.part1') }}
-                                <br>
-                                - {{ t('howItWorks.ourProcess.steps.step10.description.part2') }}
-                            </p>
-                        </div>
-                    </div>
-
-                    <!-- Step 11 -->
-                    <div class="relative pl-24">
-                        <div
-                            class="absolute left-4 -translate-x-1/2 w-12 h-12 bg-orange-500 rounded-full flex items-center justify-center text-white font-bold text-xl shadow-lg border-4 border-white z-10">
-                            11
-                        </div>
-                        <div class="bg-white rounded-2xl p-8 shadow-lg hover:shadow-xl transition-all duration-300">
-                            <h3 class="text-xl font-bold text-gray-900 mb-4">{{
-                                t('howItWorks.ourProcess.steps.step11.title') }}</h3>
-                            <p class="text-gray-600 leading-relaxed">
-                                - {{ t('howItWorks.ourProcess.steps.step11.description.part1') }}
-                                <br>
-                                - {{ t('howItWorks.ourProcess.steps.step11.description.part2') }}
-                            </p>
+                        <div class="flex items-center text-gray-700">
+                            <svg class="w-5 h-5 text-orange-500 mr-3" fill="currentColor" viewBox="0 0 20 20">
+                                <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"/>
+                            </svg>
+                            {{ t('howItWorks.services.item4') }}
                         </div>
                     </div>
                 </div>

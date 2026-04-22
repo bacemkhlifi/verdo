@@ -169,6 +169,7 @@
                         {{ $t('home.makeMoneyTwoWays.description') }}
                     </p>
                     <button
+                        @click="$router.push('/opportunities')"
                         class="bg-[#1B4332] text-white px-8 py-3 rounded-md hover:bg-[#2d5a46] transition-colors duration-300 w-fit">
                         {{ $t('home.makeMoneyTwoWays.button') }}
                     </button>

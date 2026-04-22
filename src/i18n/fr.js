@@ -105,24 +105,24 @@ passiveIncome: {
         },
       },
     },
-    makeMoneyTwoWays: {
+makeMoneyTwoWays: {
       title: "GAGNER DE L'ARGENT DE DEUX FAÇONS",
       description:
-        "À Verdolive, nous faisons les choses un peu différemment pour que nos investisseurs puissent réaliser autant de profits de leur exploitation agricole que possible. En tant que propriétaire partiel dans les terres agricoles, vous recevrez des retours annuels des ventes de produits agricoles, en plus de l'appréciation de la propriété des terres.",
+        'VerdOlive vous ouvre les portes d\'un investissement agricole nouvelle génération : devenez propriétaire de votre propre terre et construisez un patrimoine durable avec des revenus stables issus de la production et de la valorisation, ou accédez à un modèle flexible inspiré de la "Mgharsa", vous permettant d\'investir sans achat foncier et de générer des profits grâce à une exploitation entièrement gérée par VerdOlive. Une opportunité unique, alliant sécurité, rentabilité et simplicité, pensée pour les investisseurs modernes.',
       button: "Commencer à Explorer les Opportunités",
       cards: {
         card1: {
-          title: "PROFITS DE LA CULTURE",
+          title: "Achat",
           description:
-            "Recevez des profits lorsque les produits agricoles sont récoltés et vendus, dans la plupart des cas chaque année.",
+            "Nous sélectionnons des terrains agricoles soigneusement vérifiés (qualité du sol, disponibilité de l'eau, conformité juridique) pour garantir un investissement sûr. Vous achetez votre terrain et VerdOlive s'occupe de toute l'exploitation.",
         },
         card2: {
-          title: "PROPRIÉTÉ DES TERRES",
+          title: "Location (Mgharsa moderne)",
           description:
-            "Les investisseurs peuvent vendre leurs parts ou leurs terres à tout moment et profiter de toute augmentation de la valeur foncière.",
+            "Vous investissez sans acheter de terrain grâce à un modèle inspiré de la Mgharsa avec des contrats modernes et sécurisés. VerdOlive gère la production et vous partagez les revenus.",
         },
       },
-    },
+},
     /*
       longTerm: {
         title: "STRATÉGIE D'INVESTISSEMENT À LONG TERME",
@@ -156,18 +156,18 @@ passiveIncome: {
     makeMoneyTwoWays: {
       title: "GAGNER DE L'ARGENT DE DEUX FAÇONS",
       description:
-        "A Verdolive, nous faisons les choses un peu différemment pour que nos investisseurs puissent réaliser autant de profits de leur exploitation agricole que possible. En tant que propriétaire partiel dans les terres agricoles, vous recevrez des retours annuels des ventes de produits agricoles, en plus de l'appréciation de la propriété des terres.",
-      button: "Commencer à Explorer les Opportunités",
-      cards: {
+        "VerdOlive vous ouvre les portes d’un investissement agricole nouvelle génération : devenez propriétaire de votre propre terre et construisez un patrimoine durable avec des revenus stables issus de la production et de la valorisation, ou accédez à un modèle flexible inspiré de la “Mgharsa”, vous permettant d’investir sans achat foncier et de générer des profits grâce à une exploitation entièrement gérée par VerdOlive. Une opportunité unique, alliant sécurité, rentabilité et simplicité, pensée pour les investisseurs modernes.",
+button: "Commencer à Explorer les Opportunités",
+cards: {
         card1: {
           title: "PROFITS DE LA CULTURE",
           description:
             "Recevez des profits lorsque les produits agricoles sont récoltés et vendus, dans la plupart des cas chaque année.",
         },
         card2: {
-          title: "PROPRIÉTÉ DES TERRES",
+          title: "Location (Mgharsa moderne)",
           description:
-            "Les investisseurs peuvent vendre leurs parts ou leurs terres à tout moment et profiter de toute augmentation de la valeur foncière.",
+            "Vous investissez sans acheter de terrain grâce à un modèle inspiré de la Mgharsa avec des contrats modernes et sécurisés. VerdOlive gère la production et vous partagez les revenus.",
         },
       },
     },
@@ -220,8 +220,8 @@ passiveIncome: {
       "Découvrez des opportunités d'investissement agricole uniques à travers la Tunisie",
     filters: {
       all: "TOUT",
-      unplanted: "TERRES NON PLANTÉES",
-      developing: "TERRES EN DÉVELOPPEMENT",
+      unplanted: "TERRES NON PLANTEES",
+      developing: "TERRES EN DEVELOPPEMENT",
       mature: "TERRES MATURES",
     },
     farm: {
@@ -323,11 +323,11 @@ passiveIncome: {
       ],
     },
   },
-  about: {
+about: {
     hero: {
       title: "À Propos de Verdolive",
       subtitle:
-        "Chez VerdOlive, nous associons technologie moderne et agriculture durable. Nos fermes sont équipées de capteurs IoT intelligents qui surveillent en continu la santé du sol, l’irrigation et la météo en temps réel. Cela nous aide à gérer efficacement les exploitations et à augmenter la production. Nous utilisons les données pour prendre des décisions précises, réduire le gaspillage et améliorer la productivité des terres. Ainsi, nous protégeons l’environnement et augmentons les bénéfices pour nos investisseurs. VerdOlive n’est pas juste de l’agriculture — c’est une agriculture intelligente et moderne.",
+        "VerdOlive agit comme un filtre intelligent du marché foncier agricole : nous recherchons, analysons et vérifions juridiquement et techniquement les terrains avant de les proposer. L'utilisateur n'a plus besoin de passer des mois à chercher ni à prendre de risques — nous exposons uniquement les meilleures opportunités disponibles. Sur VerdOlive, vous pouvez acheter un terrain sécurisé ou le louer, avec une transparence totale concernant l'emplacement, la qualité du sol et le potentiel d'exploitation. Notre objectif est simple : rendre l'accès à la terre agricole fiable, clair et accessible, sans complexité administrative ni incertitude.",
     },
     mission: {
       title: "Notre Mission",
@@ -440,112 +440,33 @@ passiveIncome: {
         },
       },
       ourProcess: {
-        title: "Notre Process",
-        description:
-          "Un processus complet et rigoureux pour évaluer et mettre en Å“uvre chaque projet agricole.",
-        steps: {
-          step1: {
-            title: "Étude d'Opportunité",
-            description: {
-              part1:
-                "Analyse du Marché: Analyse des tendances dans l'agriculture durable, la demande pour des produits tels que l'huile d'olive premium et les besoins des investisseurs potentiels.",
-              part2:
-                "Identification du Terrain: Sélection de terres agricoles adaptées à l'établissement de vergers d'olives, en tenant compte des facteurs tels que la qualité du sol, l'accès à l'eau et le climat.",
-            },
-          },
-          step2: {
-            title: "Sélection du Terrain",
-            description: {
-              part1:
-                "Visites de Terrain: Inspection physique des parcelles pour évaluer leur potentiel agricole.",
-              part2:
-                "Vérification Légale et Environnementale: Confirmer la disponibilité légale de la terre, sa conformité aux réglementations environnementales et aux conditions de propriété.",
-            },
-          },
-          step3: {
-            title: "Étude de Faisabilité",
-            description: {
-              part1:
-                "Évaluation des Coûts: Estimation des coûts d'acquisition de terres, de préparation et de maintenance.",
-            },
-          },
-          step4: {
-            title: "Mise en Å“uvre d'un Modèle de Crowdfunding",
-            description: {
-              part1:
-                "Lancer une campagne de crowdfunding pour permettre à plusieurs investisseurs de participer à l'achat de terres et à la gestion des projets.",
-            },
-          },
-          step5: {
-            title: "Plantation et Gestion des Cultures",
-            description: {
-              part1:
-                "Préparation de la Terre: Effectuer les travaux préliminaires nécessaires (nettoyage, amélioration du sol).",
-              part2:
-                "Plantation: Plantation de jeunes arbres d'olives ou de cultures sélectionnées en fonction des recherches sur le marché et des besoins des investisseurs.",
-            },
-          },
-          step6: {
-            title: "Technologie IoT",
-            description: {
-              part1:
-                "Mise en place d'un système de surveillance IoT pour optimiser l'irrigation et la gestion du sol, assurant la transparence dans la gestion des cultures et le suivi des bénéfices.",
-            },
-          },
-          step7: {
-            title: "Gestion et Maintenance Continue",
-            description: {
-              part1:
-                "Surveillance des Cultures: Assurer le maintien régulier des cultures, y compris l'irrigation, la fertilisation et le contrôle des parasites.",
-              part2:
-                "Analyse des Performances: Suivi des données collectées via des capteurs IoT pour ajuster les actions et maximiser la productivité.",
-            },
-          },
-          step8: {
-            title: "Récolte et Vente de Produits",
-            description: {
-              part1:
-                "Récolte: Effectuer la récolte lorsque les produits atteignent leur maturité, optimisant les rendements.",
-              part2:
-                "Vente de Produits: Vendre les produits récoltés (huile d'olive, fruits, etc.) via des canaux de distribution locaux ou internationaux, en fonction des préférences des consommateurs et de la demande du marché.",
-            },
-          },
-          step9: {
-            title: "Distribution des Bénéfices",
-            description: {
-              part1:
-                "Partage des Bénéfices: Distribuer les bénéfices générés à partir de la vente de produits agricoles en fonction des parts détenues par les investisseurs. Grâce à la technologie blockchain, chaque investisseur peut suivre en temps réel la rentabilité de son investissement.",
-            },
-          },
-          step10: {
-            title: "Croissance et Reinvestissement",
-            description: {
-              part1:
-                "Expansion: Utiliser les bénéfices générés pour étendre le projet en acquérant de nouvelles terres ou en augmentant la capacité de production sur les terres existantes.",
-              part2:
-                "Diversification: Explorer d'autres cultures et projets agricoles innovants pour diversifier les revenus et attirer de nouveaux investisseurs.",
-            },
-          },
-          step11: {
-            title: "Surveillance à Long Term et Développement",
-            description: {
-              part1:
-                "Surveillance Régulière: Assurer le suivi régulier de l'ensemble du processus, depuis l'investissement initial jusqu'à la rentabilité à long terme.",
-              part2:
-                "Amélioration Continue: Ajuster les stratégies de plantation, de ventes et de gestion pour répondre aux changements du marché et maximiser le retour sur investissement.",
-            },
-          },
+        title: "Notre processus",
+        step1: {
+          title: "Collecte des informations",
+          description: "Réception des coordonnées du terrain et des données initiales transmises par le propriétaire."
+        },
+        step2: {
+          title: "Étude technique",
+          description: "Analyse de la localisation, du climat, de la disponibilité en eau et de la qualité agronomique du sol."
+        },
+        step3: {
+          title: "Vérification juridique",
+          description: "Contrôle des documents fonciers, de la situation cadastrale et de l'absence de litiges."
+        },
+        step4: {
+          title: "Validation VerdOlive",
+          description: "Seuls les terrains conformes à nos standards internes sont retenus et proposés aux investisseurs."
         },
       },
-    },
-    opportunities: {
-      title: "Liste des Terres Agricoles",
+  },
+  opportunities: {
+  title: "Liste des Terres Agricoles",
       subtitle:
         "Découvrez des opportunités d'investissement agricole uniques à travers la Tunisie",
       filters: {
         all: "TOUT",
-        unplanted: "TERRES NON PLANTÉES",
-        developing: "TERRES EN DÉVELOPPEMENT",
+        unplanted: "TERRES NON PLANTEES",
+        developing: "TERRES EN DEVELOPPEMENT",
         mature: "TERRES MATURES",
       },
       farm: {
@@ -567,7 +488,7 @@ passiveIncome: {
     footer: {
       contact: {
         title: "Contactez-nous",
-        email: "verdolivetunisia{'@'}gmail.com",
+        email: 'verdolivetunisia@gmail.com',
         phone: "+216 23965219",
         address: "Tunisie, Sfax 3000",
       },
@@ -691,11 +612,10 @@ passiveIncome: {
       },
     },
   },
-  howItWorks: {
+howItWorks: {
     hero: {
       title: "Ouvrir des opportunités uniques",
-      subtitle:
-        "Le système intégré de VerdOlive vous permet de posséder une part ou une ferme entière, ouvrant l’accès à des terres agricoles précieuses auparavant inaccessibles.",
+      subtitle: "",
     },
     system: {
       title: "NOTRE SYSTÈME VERDOLIVE INTÉGRÉ",
@@ -754,104 +674,33 @@ passiveIncome: {
         description:
           "Le système IoT de VerdOlive donne vie à l'agriculture intelligente grâce à des capteurs de sol en temps réel qui suivent les niveaux d'humidité et de nutriments. Grâce à cette technologie, les agriculteurs peuvent surveiller la croissance de leurs cultures et recevoir des mises à jour instantanées sur les conditions du sol pour prendre des décisions plus éclairées. La simplicité et l'efficacité du système en font un outil essentiel pour une oléiculture durable et productive. ",
       },
-    },
+},
     ourProcess: {
-      title: "notre processus",
-      description:
-        "Un processus complet et rigoureux d'évaluation et de mise en Å“uvre de chaque projet agricole.",
-      steps: {
-        step1: {
-          title: "Etude d'opportunité",
-          description: {
-            part1:
-              "Analyse du marché : analyser les tendances en matière d'agriculture durable, la demande de produits tels que l'huile d'olive de qualité supérieure et les besoins des investisseurs potentiels.",
-            part2:
-              "Identification des terres : sélection de terres agricoles adaptées à l'établissement d'oliveraies, en tenant compte de facteurs tels que la qualité du sol, l'accès à l'eau et le climat.",
-          },
-        },
-        step2: {
-          title: "Sélection des terrains",
-          description: {
-            part1:
-              "Visites de sites : Inspecter physiquement les parcelles pour évaluer leur potentiel agricole.",
-            part2:
-              "Vérification juridique et environnementale : Confirmer la disponibilité légale du terrain, sa conformité à la réglementation environnementale et les conditions de propriété.",
-          },
-        },
-        step3: {
-          title: "Étude de faisabilité",
-          description: {
-            part1:
-              "Évaluation des coûts : estimer les coûts d'acquisition, de préparation et d'entretien du terrain.",
-          },
-        },
-        step4: {
-          title: "Mise en place d'un modèle de financement participatif",
-          description: {
-            part1:
-              "Lancer une campagne de financement participatif pour permettre à plusieurs investisseurs de participer à l'achat de terrains et à la gestion des projets.",
-          },
-        },
-        step5: {
-          title: "Plantation et gestion des cultures",
-          description: {
-            part1:
-              "Préparation du terrain : Réaliser les travaux préalables nécessaires (défrichage, nettoyage, amélioration des sols).",
-            part2:
-              "Plantation : Plantez de jeunes oliviers ou d'autres cultures sélectionnées en fonction des études de marché et des besoins des investisseurs.",
-          },
-        },
-        step6: {
-          title: "Technologie IoT",
-          description: {
-            part1:
-              "Mettre en Å“uvre un système de surveillance IoT pour optimiser l'irrigation et la gestion des sols, en garantissant la transparence dans la gestion des cultures et le suivi des bénéfices.",
-          },
-        },
-        step7: {
-          title: "Gestion et maintenance continues",
-          description: {
-            part1:
-              "Surveillance des cultures : assurer l'entretien régulier des cultures, y compris l'irrigation, la fertilisation et la lutte antiparasitaire.",
-            part2:
-              "Analyse des performances : surveillez les données collectées via les capteurs IoT pour ajuster les actions et maximiser la productivité.",
-          },
-        },
-        step8: {
-          title: "Récolte et vente de produits",
-          description: {
-            part1:
-              "Récolte : Réaliser la récolte lorsque les produits arrivent à maturité, en optimisant les rendements.",
-            part2:
-              "Ventes de produits : vendre les produits récoltés (huile d'olive, fruits, etc.) via des canaux de distribution locaux ou internationaux, en fonction des préférences des consommateurs et de la demande du marché.",
-          },
-        },
-        step9: {
-          title: "Répartition des bénéfices",
-          description: {
-            part1:
-              "Partage des bénéfices : Distribuez les bénéfices générés par la vente des produits agricoles en fonction des actions détenues par les investisseurs. chaque investisseur peut suivre en temps réel la rentabilité de son investissement.",
-          },
-        },
-        step10: {
-          title: "Croissance et réinvestissement",
-          description: {
-            part1:
-              "Extension : utiliser les bénéfices générés pour étendre le projet en acquérant de nouveaux terrains ou en augmentant la capacité de production sur des terrains existants.",
-            part2:
-              "Diversification : explorer d'autres cultures et des projets agricoles innovants pour diversifier les revenus et attirer de nouveaux investisseurs.",
-          },
-        },
-        step11: {
-          title: "Suivi et développement à long terme",
-          description: {
-            part1:
-              "Surveillance continue : assurez un suivi régulier de l'ensemble du processus, de l'investissement initial à la rentabilité à long terme.",
-            part2:
-              "Amélioration continue : Ajustez les stratégies de plantation, de vente et de gestion pour répondre aux changements du marché et maximiser le retour sur investissement.",
-          },
-        },
+      title: "Notre processus",
+      step1: {
+        title: "Collecte des informations",
+        description: "Réception des coordonnées du terrain et des données initiales transmises par le propriétaire."
       },
+      step2: {
+        title: "Étude technique",
+        description: "Analyse de la localisation, du climat, de la disponibilité en eau et de la qualité agronomique du sol."
+      },
+      step3: {
+        title: "Vérification juridique",
+        description: "Contrôle des documents fonciers, de la situation cadastrale et de l'absence de litiges."
+      },
+      step4: {
+        title: "Validation VerdOlive",
+        description: "Seuls les terrains conformes à nos standards internes sont retenus et proposés aux investisseurs."
+      },
+    },
+    services: {
+      title: "Services (Bientot disponibles)",
+      description: "VerdOlive developpera prochain des services complementaires pour accompagner les projets agricoles :",
+      item1: "Suivi et monitoring agricole",
+      item2: "Mise en relation avec agricoles et gestionnaires",
+      item3: "Assistance administrative et contractuelle",
+item4: "Tableaux de bord et rapports d'exploitation"
     },
   },
   geoai: {
@@ -891,6 +740,7 @@ passiveIncome: {
       useCoordinates: "Utiliser les coordonnées",
       mapHelp: "Cliquez sur la carte pour sélectionner le terrain.",
       coordinatesHelp: "Entrez directement la latitude et la longitude.",
+      guestMapHelp: "Cliquez sur la carte pour sélectionner l'emplacement de votre terrain.",
       mapTitle: "Sélecteur de carte",
       mapType: "Type de carte",
       mapTypes: {
@@ -1015,6 +865,10 @@ passiveIncome: {
       lockedGuidance: "Les conseils détaillés sur l'eau, le sol et la pente sont verrouillés.",
       moreCropOptions: "Plus d'options de culture",
       blurredUntilAccount: "Flouté jusqu'à la création d'un compte",
+      guestAccess: "Accès invité",
+      createAccount: "Créer un compte",
+      signIn: "Se connecter",
+      savedHistory: "Historique enregistré",
       optionsCount: "{count} options",
       notRecommendedTitle: "Arbres non recommandés",
       notRecommendedSubtitle: "Ces arbres sont des choix plus faibles pour ce terrain précis.",
@@ -1043,6 +897,7 @@ passiveIncome: {
     beforePlanting: "Avant de planter",
     rawJson: "JSON GeoAI brut",
     emptyResult: "Aucune analyse pour le moment. Envoyez des coordonnées pour générer une évaluation GeoAI du terrain.",
+    analysisWarning: "Analyse basée sur les signaux locaux d'Open-Meteo, NASA POWER et SoilGrids.",
     history: {
       title: "Analyses récentes",
       subtitle: "Ouvrez une analyse précédente pour la revoir.",

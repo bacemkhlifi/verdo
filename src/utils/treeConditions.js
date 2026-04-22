@@ -1,6 +1,7 @@
 export const crops = [
   {
     key: "olive",
+    name: "Olive Tree",
     image:
       "https://static.vecteezy.com/system/resources/thumbnails/033/288/551/small/many-olives-top-view-ai-generated-image-photo.jpg",
     p: [6, 8.5],
@@ -10,6 +11,7 @@ export const crops = [
   },
   {
     key: "almond",
+    name: "Almond Tree",
     image:
       "https://static.vecteezy.com/system/resources/thumbnails/011/968/353/small_2x/sicily-almond-tree-fruit-detail-photo.jpg",
     p: [6, 8],
@@ -19,6 +21,7 @@ export const crops = [
   },
   {
     key: "date_palm",
+    name: "Date Palm",
     image:
       "https://static.vecteezy.com/system/resources/thumbnails/072/894/231/small_2x/a-striking-detailed-botanical-image-presents-a-solitary-elegant-date-palm-tree-with-ripe-fruit-photo.jpeg",
     p: [7, 8.5],
@@ -28,6 +31,7 @@ export const crops = [
   },
   {
     key: "pistachio",
+    name: "Pistachio Tree",
     image:
       "https://static.vecteezy.com/system/resources/thumbnails/071/602/466/small_2x/pistachio-nuts-on-the-pistachio-tree-in-focus-photo.jpg",
     p: [7, 8.5],
@@ -37,6 +41,7 @@ export const crops = [
   },
   {
     key: "orange",
+    name: "Orange Tree",
     image:
       "https://static.vecteezy.com/system/resources/thumbnails/039/622/899/small_2x/ai-generated-fresh-citrus-fruit-on-tree-ripe-and-healthy-outdoors-generated-by-ai-free-photo.jpg",
     p: [6, 7.5],
@@ -46,6 +51,7 @@ export const crops = [
   },
   {
     key: "lemon",
+    name: "Lemon Tree",
     image:
       "https://static.vecteezy.com/system/resources/thumbnails/032/484/299/small_2x/lemons-growing-in-a-sunny-garden-on-amalfi-coast-in-italy-ai-generated-free-photo.jpg",
     p: [6, 7.5],

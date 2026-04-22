@@ -107,18 +107,18 @@ export default {
     makeMoneyTwoWays: {
       title: "MAKE MONEY TWO WAYS",
       description:
-        "At Verdolive, we do things a little differently so that our investors can realize as much profit from their farm operation as possible. As part owner in the farmland, you will receive annual returns from the crop sales, in addition to the appreciation from ownership of the land.",
+        "VerdOlive gives you access to a new generation of agricultural investment: own your land and build long-term wealth with stable income from production and land appreciation, or choose a flexible model inspired by \"Mgharsa,\" allowing you to invest without land ownership and generate returns through fully managed operations by VerdOlive. A unique opportunity combining security, profitability, and simplicity, designed for modern investors.",
       button: "Start Exploring Opportunities",
       cards: {
         card1: {
-          title: "CROP PROFITS",
+          title: "Purchase",
           description:
-            "Receive profits when crops are harvested and sold, in most cases annually.",
+            "We carefully select agricultural land that is fully verified (soil quality, water availability, and legal compliance) to ensure a secure investment. You own the land while VerdOlive handles all operations.",
         },
         card2: {
-          title: "OWN THE LAND",
+          title: "Leasing (Modern Mgharsa)",
           description:
-            "Investors can sell their land or shares at any time and benefit from any increase in land value.",
+            "You invest without owning land through a model inspired by Mgharsa, using modern and secure contracts. VerdOlive manages the production and you earn a share of the returns.",
         },
       },
     },
@@ -248,89 +248,24 @@ export default {
         "Protect the interests of shareholders through responsible decision-making and informed analysis.",
         "Integrate strategies that align with government policy, especially in regard to increasing productive land usage.",
         "Maximize traceability and accountability across all activity sectors by providing clear and timely reporting.",
-      ],
+],
     },
   },
   about: {
     hero: {
       title: "About Verdolive",
       subtitle:
-        "At VerdOlive, we combine modern technology with sustainable farming. Our farms are equipped with smart IoT sensors that continuously monitor soil health, irrigation, and weather in real time. This helps us manage farms efficiently and boost production. We rely on data to make precise decisions, reduce waste, and improve land productivity. This way, we protect the environment and increase profits for our investors. VerdOlive is not just farming — it’s smart, modern farming.",
+        "VerdOlive acts as an intelligent filter for the agricultural land market: we search, analyze, and legally and technically verify land before listing it. Users no longer need to spend months searching or taking risks — we present only the best available opportunities. On VerdOlive, you can either buy secured land or lease it, with full transparency regarding location, soil quality, and production potential. Our goal is simple: make access to farmland a reliable, clear, and accessible investment without administrative complexity or uncertainty.",
     },
     mission: {
       title: "Our Mission",
     },
-    values: {
-      rootedness: {
-        title: "Rootedness",
-        description:
-          "To cultivate long-term value through deep connections with markets, government agencies, and industry actors in our operating regions.",
-      },
-      adaptation: {
-        title: "Adaptation",
-        description:
-          "Constantly refining processes, evaluating market conditions, and generating new ideas to adapt to a rapidly changing world.",
-      },
-      abundance: {
-        title: "Abundance",
-        description:
-          "Sharing agricultural abundance fairly with all participants, from stakeholders to fruit packers to farm workers.",
-      },
-    },
-  },
-  unauthorized: {
-    title: "Access Denied",
-    subtitle: "You don't have permission to access this page.",
-    message:
-      "Please contact the administrator if you believe this is an error.",
-    actions: {
-      home: "Go to Home",
-      dashboard: "Go to Dashboard",
-    },
-  },
-  howItWorks: {
-    hero: {
-      title: "Providing Niche Access",
-      subtitle:
-        "Verdolive's integrated system for fractionalized and whole-farm ownership is providing access to previously unavailable farmland assets.",
-    },
-    system: {
-      title: "OUR INTEGRATED VERDOLIVE SYSTEM",
-      subtitle: "Owning Farmland",
-      description:
-        "Farmland ownership with verdolive is an integrated and hands-off system that creates value for farmowners and provides solutions for all necessary farm tasks. Learn more about the different aspects of our turn-key system.",
-    },
-  },
-  footer: {
-    contact: {
-      title: "Contact Us",
-      email: "verdolivetunisia{'@'}gmail.com",
-      phone: "+216 23965219",
-      address: "Tunisia, Sfax 3000",
-    },
-    quickLinks: {
-      title: "Quick Links",
-      about: "About Us",
-      opportunities: "Opportunities",
-      howItWorks: "How It Works",
-      impact: "Our Impact",
-    },
-    social: {
-      title: "Follow Us",
-    },
-    newsletter: {
-      title: "Newsletter",
-      placeholder: "Enter your email",
-      button: "Subscribe",
-    },
-    copyright: "© {year} VerdoLive. All rights reserved.",
-    madeWith: "Made with by Imed Rebhi",
   },
   about: {
     hero: {
       title: "About Verdolive",
       subtitle:
-        "At VerdOlive, we combine modern technology with sustainable farming. Our farms are equipped with smart IoT sensors that continuously monitor soil health, irrigation, and weather in real time. This helps us manage farms efficiently and boost production. We rely on data to make precise decisions, reduce waste, and improve land productivity. This way, we protect the environment and increase profits for our investors. VerdOlive is not just farming — it’s smart, modern farming.",
+        "VerdOlive acts as an intelligent filter for the agricultural land market: we search, analyze, and legally and technically verify land before listing it. Users no longer need to spend months searching or taking risks — we present only the best available opportunities. On VerdOlive, you can either buy secured land or lease it, with full transparency regarding location, soil quality, and production potential. Our goal is simple: make access to farmland a reliable, clear, and accessible investment without administrative complexity or uncertainty.",
     },
     mission: {
       title: "Our Mission",
@@ -380,10 +315,9 @@ export default {
     },
   },
   howItWorks: {
-    hero: {
+hero: {
       title: "Opening Unique Opportunities",
-      subtitle:
-        "VerdOlive’s integrated system allows you to own a share or an entire farm, opening access to valuable farmland that was previously out of reach.",
+      subtitle: "",
     },
     system: {
       title: "OUR INTEGRATED VERDOLIVE SYSTEM",
@@ -445,101 +379,30 @@ export default {
     },
     ourProcess: {
       title: "Our Process",
-      description:
-        "A comprehensive and rigorous process for evaluating and implementing each agricultural project.",
-      steps: {
-        step1: {
-          title: "Opportunity Study",
-          description: {
-            part1:
-              "Market Analysis: Analyzing trends in sustainable agriculture, the demand for products such as premium olive oil, and the needs of potential investors.",
-            part2:
-              "Land Identification: Selecting agricultural land suitable for establishing olive groves, taking into account factors such as soil quality, water access, and climate.",
-          },
-        },
-        step2: {
-          title: "Land Selection",
-          description: {
-            part1:
-              "Site Visits: Physically inspect plots to assess their agricultural potential.",
-            part2:
-              "Legal and Environmental Verification: Confirm the legal availability of the land, its compliance with environmental regulations, and ownership conditions.",
-          },
-        },
-        step3: {
-          title: "Feasibility Study",
-          description: {
-            part1:
-              "Cost Assessment: Estimate the costs of land acquisition, preparation, and maintenance.",
-          },
-        },
-        step4: {
-          title: "Implementation of a Crowdfunding Model",
-          description: {
-            part1:
-              "Launch a crowdfunding campaign to enable multiple investors to participate in the purchase of land and the management of the projects.",
-          },
-        },
-        step5: {
-          title: "Planting and Crop Management",
-          description: {
-            part1:
-              "Land Preparation: Carry out necessary preliminary work (clearing, cleaning, soil improvement).",
-            part2:
-              "Planting: Plant young olive trees or other selected crops based on market research and investor needs.",
-          },
-        },
-        step6: {
-          title: "IoT Technology",
-          description: {
-            part1:
-              "Implement an IoT monitoring system to optimize irrigation and soil management, ensuring transparency in crop management and profit tracking.",
-          },
-        },
-        step7: {
-          title: "Ongoing Management and Maintenance",
-          description: {
-            part1:
-              "Crop Monitoring: Ensure regular maintenance of crops, including irrigation, fertilization, and pest control.",
-            part2:
-              "Performance Analysis: Monitor data collected through IoT sensors to adjust actions and maximize productivity.",
-          },
-        },
-        step8: {
-          title: "Harvesting and Product Sales",
-          description: {
-            part1:
-              "Harvesting: Carry out harvesting when the products reach maturity, optimizing yields.",
-            part2:
-              "Product Sales: Sell the harvested products (olive oil, fruits, etc.) through local or international distribution channels, based on consumer preferences and market demand.",
-          },
-        },
-        step9: {
-          title: "Profit Distribution",
-          description: {
-            part1:
-              "Profit Sharing: Distribute profits generated from the sale of agricultural products based on the shares held by investors. each investor can track the profitability of their investment in real time.",
-          },
-        },
-        step10: {
-          title: "Growth and Reinvestment",
-          description: {
-            part1:
-              "Expansion: Use the profits generated to expand the project by acquiring new land or increasing production capacity on existing land.",
-            part2:
-              "Diversification: Explore other crops and innovative agricultural projects to diversify income and attract new investors.",
-          },
-        },
-        step11: {
-          title: "Long-Term Monitoring and Development",
-          description: {
-            part1:
-              "Ongoing Monitoring: Ensure regular tracking of the entire process, from initial investment to long-term profitability.",
-            part2:
-              "Continuous Improvement: Adjust planting, sales, and management strategies to respond to market changes and maximize return on investment.",
-          },
-        },
+      step1: {
+        title: "Information Collection",
+        description: "Receiving land coordinates and initial data provided by the owner."
       },
+      step2: {
+        title: "Technical Study",
+        description: "Evaluation of location, climate conditions, water availability, and soil agronomic quality."
+      },
+      step3: {
+        title: "Legal Verification",
+        description: "Review of title documents, cadastral status, and absence of disputes."
+      },
+      step4: {
+        title: "VerdOlive Approval",
+        description: "Only land meeting our internal standards is selected and presented to investors."
+      },
+    },
+    services: {
+      title: "Services (Coming Soon)",
+      description: "VerdOlive will introduce additional services to support agricultural projects:",
+      item1: "Agricultural monitoring and follow-up",
+      item2: "Connection with farmers and managers",
+      item3: "Administrative and contractual assistance",
+      item4: "Dashboards and operational reports"
     },
   },
   opportunities: {
@@ -703,6 +566,31 @@ export default {
       logout: "Logout",
     },
   },
+  footer: {
+    contact: {
+      title: "Contact Us",
+      email: 'verdolivetunisia@gmail.com',
+      phone: "+216 23965219",
+      address: "Tunisia, Sfax 3000",
+    },
+    quickLinks: {
+      title: "Quick Links",
+      about: "About Us",
+      opportunities: "Opportunities",
+      howItWorks: "How It Works",
+      impact: "Our Impact",
+    },
+    social: {
+      title: "Follow Us",
+    },
+    newsletter: {
+      title: "Newsletter",
+      placeholder: "Enter your email",
+      button: "Subscribe",
+    },
+    copyright: "© {year} VerdoLive. All rights reserved.",
+    madeWith: "Made with by Imed Rebhi",
+  },
   geoai: {
     badge: "GeoAI Service",
     page: {
@@ -768,6 +656,7 @@ export default {
       useCoordinates: "Use coordinates",
       mapHelp: "Click on the map to select the land.",
       coordinatesHelp: "Enter latitude and longitude directly.",
+      guestMapHelp: "Click on the map to select your land location.",
       mapTitle: "Map picker",
       mapType: "Map type",
       mapTypes: {
@@ -892,6 +781,10 @@ export default {
       lockedGuidance: "Detailed water, soil, and slope guidance is locked.",
       moreCropOptions: "More crop options",
       blurredUntilAccount: "Blurred until you create an account",
+      guestAccess: "Guest access",
+      createAccount: "Create an account",
+      signIn: "Sign in",
+      savedHistory: "Saved history",
       optionsCount: "{count} options",
       notRecommendedTitle: "Not recommended trees",
       notRecommendedSubtitle:
@@ -921,6 +814,7 @@ export default {
     beforePlanting: "Before Planting",
     rawJson: "Raw GeoAI JSON",
     emptyResult: "No analysis yet. Submit coordinates to generate a GeoAI land assessment.",
+    analysisWarning: "The external GeoAI service was unavailable, so the analysis used local fallback signals for soil, slope, and weather.",
     history: {
       title: "Recent Analyses",
       subtitle: "Open a previous analysis to review it again.",

@@ -18,6 +18,7 @@
                 </p>
                 <div class="flex gap-4 pt-4 animate-slide-up-delay-2">
                     <button
+                        @click="$router.push('/login')"
                         class="bg-olive-dark hover:bg-green-500 px-8 py-3 rounded-full transition-all duration-300 transform hover:scale-105 font-medium">
                         {{ $t('home.hero.button') }}
                     </button>
