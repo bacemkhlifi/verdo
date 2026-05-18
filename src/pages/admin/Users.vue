@@ -1,134 +1,100 @@
 <template>
     <div class="bg-white shadow overflow-hidden sm:rounded-md">
-        <div class="px-4 py-5 sm:px-6 flex justify-between items-center">
+        <div class="px-4 py-5 sm:px-6 flex justify-between items-center gap-4">
             <div>
-                <h3 class="text-lg leading-6 font-medium text-gray-900">Users Management</h3>
-                <p class="mt-1 max-w-2xl text-sm text-gray-500">Manage all users in the system</p>
+                <h3 class="text-lg leading-6 font-medium text-gray-900">{{ $t('admin.users.title') }}</h3>
+                <p class="mt-1 max-w-2xl text-sm text-gray-500">{{ $t('admin.users.subtitle') }}</p>
             </div>
-            <button @click="showAddUserModal = true"
-                class="inline-flex items-center px-4 py-2 border border-transparent text-sm font-medium rounded-md shadow-sm text-white bg-blue-600 hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500">
-                Add New User
-            </button>
+            <div class="flex gap-3">
+                <button @click="loadUsers" class="px-4 py-2 border border-gray-300 text-sm font-medium rounded-md text-gray-700 bg-white hover:bg-gray-50">
+                    {{ $t('common.refresh') }}
+                </button>
+                <button @click="showAddUserModal = true"
+                    class="inline-flex items-center px-4 py-2 border border-transparent text-sm font-medium rounded-md shadow-sm text-white bg-blue-600 hover:bg-blue-700">
+                    {{ $t('admin.users.addNew') }}
+                </button>
+            </div>
+        </div>
+
+        <div v-if="error" class="mx-4 mb-4 rounded-md border border-red-200 bg-red-50 px-4 py-3 text-sm text-red-700">
+            {{ error }}
         </div>
 
         <div class="border-t border-gray-200">
-            <div class="overflow-x-auto">
+            <div v-if="loading" class="p-6 text-sm text-gray-600">{{ $t('admin.users.loading') }}</div>
+            <div v-else class="overflow-x-auto">
                 <table class="min-w-full divide-y divide-gray-200">
                     <thead class="bg-gray-50">
                         <tr>
-                            <th scope="col"
-                                class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
-                                Name</th>
-                            <th scope="col"
-                                class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
-                                Email</th>
-                            <th scope="col"
-                                class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
-                                Role</th>
-                            <th scope="col"
-                                class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
-                                Status</th>
-                            <th scope="col"
-                                class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
-                                Actions</th>
+                            <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">{{ $t('admin.users.name') }}</th>
+                            <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">{{ $t('admin.users.email') }}</th>
+                            <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">{{ $t('admin.users.role') }}</th>
+                            <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">{{ $t('common.status') }}</th>
+                            <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">{{ $t('common.actions') }}</th>
                         </tr>
                     </thead>
                     <tbody class="bg-white divide-y divide-gray-200">
-                        <tr v-for="(user, index) in users" :key="index">
+                        <tr v-for="user in users" :key="user._id">
+                            <td class="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900">{{ user.firstName }} {{ user.lastName }}</td>
+                            <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-900">{{ user.email }}</td>
                             <td class="px-6 py-4 whitespace-nowrap">
-                                <div class="flex items-center">
-                                    <div class="text-sm font-medium text-gray-900">{{ user.firstName }} {{ user.lastName
-                                        }}</div>
-                                </div>
-                            </td>
-                            <td class="px-6 py-4 whitespace-nowrap">
-                                <div class="text-sm text-gray-900">{{ user.email }}</div>
-                            </td>
-                            <td class="px-6 py-4 whitespace-nowrap">
-                                <span
-                                    class="px-2 inline-flex text-xs leading-5 font-semibold rounded-full bg-green-100 text-green-800">
-                                    {{ user.role }}
+                                <span class="px-2 inline-flex text-xs leading-5 font-semibold rounded-full bg-green-100 text-green-800">
+                                    {{ roleLabel(user.roles?.join(', ') || user.role) }}
                                 </span>
                             </td>
                             <td class="px-6 py-4 whitespace-nowrap">
-                                <span class="px-2 inline-flex text-xs leading-5 font-semibold rounded-full"
-                                    :class="user.active ? 'bg-green-100 text-green-800' : 'bg-red-100 text-red-800'">
-                                    {{ user.active ? 'Active' : 'Inactive' }}
+                                <span class="px-2 inline-flex text-xs leading-5 font-semibold rounded-full" :class="user.active ? 'bg-green-100 text-green-800' : 'bg-red-100 text-red-800'">
+                                    {{ user.active ? $t('admin.users.active') : $t('admin.users.inactive') }}
                                 </span>
                             </td>
                             <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
-                                <button class="text-indigo-600 hover:text-indigo-900 mr-3">Edit</button>
-                                <button class="text-red-600 hover:text-red-900">Delete</button>
+                                <button class="text-indigo-600 hover:text-indigo-900 mr-3" @click="toggleActive(user)">
+                                    {{ user.active ? $t('admin.users.deactivate') : $t('admin.users.activate') }}
+                                </button>
+                                <button class="text-red-600 hover:text-red-900" @click="deleteUser(user)">{{ $t('common.delete') }}</button>
                             </td>
                         </tr>
                     </tbody>
                 </table>
             </div>
         </div>
-    </div>
 
-    <!-- Add User Modal -->
-    <div v-if="showAddUserModal" class="fixed inset-0 overflow-y-auto h-full w-full z-50"
-        style="background: radial-gradient(circle at center, rgba(229, 231, 235, 0.3) 0%, rgba(229, 231, 235, 0.1) 50%, transparent 100%);">
-        <div class="relative top-20 mx-auto p-8 w-96 rounded-2xl bg-white border border-gray-200 shadow-lg">
-            <div class="mt-3">
+        <div v-if="showAddUserModal" class="fixed inset-0 overflow-y-auto h-full w-full z-50 bg-gray-900/30">
+            <div class="relative top-16 mx-auto p-8 w-full max-w-md rounded-2xl bg-white border border-gray-200 shadow-lg">
                 <div class="flex justify-between items-center mb-4">
-                    <h3 class="text-lg font-medium text-gray-900">Add New User</h3>
-                    <button @click="showAddUserModal = false" class="text-gray-400 hover:text-gray-600">
-                        <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                                d="M6 18L18 6M6 6l12 12"></path>
-                        </svg>
-                    </button>
+                    <h3 class="text-lg font-medium text-gray-900">{{ $t('admin.users.addNew') }}</h3>
+                    <button @click="showAddUserModal = false" class="text-gray-400 hover:text-gray-600">{{ $t('admin.users.close') }}</button>
                 </div>
 
-                <form @submit.prevent="addUser">
-                    <div class="mb-4">
-                        <label class="block text-sm font-medium text-gray-700 mb-2">First Name</label>
-                        <input v-model="newUser.firstName" type="text" required
-                            class="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500">
-                    </div>
+                <form @submit.prevent="addUser" class="space-y-4">
+                    <input v-model="newUser.firstName" type="text" required :placeholder="$t('admin.users.firstName')" class="w-full px-3 py-2 border border-gray-300 rounded-md">
+                    <input v-model="newUser.lastName" type="text" required :placeholder="$t('admin.users.lastName')" class="w-full px-3 py-2 border border-gray-300 rounded-md">
+                    <input v-model="newUser.email" type="email" required :placeholder="$t('admin.users.email')" class="w-full px-3 py-2 border border-gray-300 rounded-md">
+                    <input v-model="newUser.phoneNumber" type="tel" required :placeholder="$t('admin.users.phoneNumber')" class="w-full px-3 py-2 border border-gray-300 rounded-md">
+                    <input v-model="newUser.password" type="password" required :placeholder="$t('admin.users.temporaryPassword')" class="w-full px-3 py-2 border border-gray-300 rounded-md">
+                    <select v-model="newUser.role" required class="w-full px-3 py-2 border border-gray-300 rounded-md">
+                        <option value="">{{ $t('admin.users.selectRole') }}</option>
+                        <option value="admin">{{ $t('admin.users.adminRole') }}</option>
+                        <option value="investor">{{ $t('admin.users.investorRole') }}</option>
+                        <option value="landowner">{{ $t('admin.users.landownerRole') }}</option>
+                    </select>
+                    <select v-model="newUser.entityType" required class="w-full px-3 py-2 border border-gray-300 rounded-md">
+                        <option value="individual">{{ $t('admin.users.individual') }}</option>
+                        <option value="group">{{ $t('admin.users.group') }}</option>
+                        <option value="company">{{ $t('admin.users.company') }}</option>
+                        <option value="organization">{{ $t('admin.users.organization') }}</option>
+                    </select>
+                    <select v-model="newUser.active" class="w-full px-3 py-2 border border-gray-300 rounded-md">
+                        <option :value="true">{{ $t('admin.users.active') }}</option>
+                        <option :value="false">{{ $t('admin.users.inactive') }}</option>
+                    </select>
 
-                    <div class="mb-4">
-                        <label class="block text-sm font-medium text-gray-700 mb-2">Last Name</label>
-                        <input v-model="newUser.lastName" type="text" required
-                            class="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500">
-                    </div>
-
-                    <div class="mb-4">
-                        <label class="block text-sm font-medium text-gray-700 mb-2">Email</label>
-                        <input v-model="newUser.email" type="email" required
-                            class="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500">
-                    </div>
-
-                    <div class="mb-4">
-                        <label class="block text-sm font-medium text-gray-700 mb-2">Role</label>
-                        <select v-model="newUser.role" required
-                            class="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500">
-                            <option value="">Select Role</option>
-                            <option value="Admin">Admin</option>
-                            <option value="Investor">Investor</option>
-                            <option value="Landowner">Landowner</option>
-                        </select>
-                    </div>
-
-                    <div class="mb-4">
-                        <label class="block text-sm font-medium text-gray-700 mb-2">Status</label>
-                        <select v-model="newUser.active" required
-                            class="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500">
-                            <option value="true">Active</option>
-                            <option value="false">Inactive</option>
-                        </select>
-                    </div>
-
-                    <div class="flex justify-end space-x-3">
-                        <button type="button" @click="showAddUserModal = false"
-                            class="px-4 py-2 text-sm font-medium text-gray-700 bg-gray-200 rounded-md hover:bg-gray-300 focus:outline-none focus:ring-2 focus:ring-gray-500">
-                            Cancel
+                    <div class="flex justify-end space-x-3 pt-2">
+                        <button type="button" @click="showAddUserModal = false" class="px-4 py-2 text-sm font-medium text-gray-700 bg-gray-200 rounded-md hover:bg-gray-300">
+                            {{ $t('admin.users.cancel') }}
                         </button>
-                        <button type="submit"
-                            class="px-4 py-2 text-sm font-medium text-white bg-blue-600 rounded-md hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-blue-500">
-                            Add User
+                        <button type="submit" :disabled="saving" class="px-4 py-2 text-sm font-medium text-white bg-blue-600 rounded-md hover:bg-blue-700 disabled:opacity-60">
+                            {{ saving ? $t('common.saving') : $t('admin.users.addUser') }}
                         </button>
                     </div>
                 </form>
@@ -138,46 +104,73 @@
 </template>
 
 <script>
+import AdminService from '../../services/AdminService';
+
 export default {
     name: 'AdminUsers',
     data() {
         return {
             showAddUserModal: false,
-            newUser: {
-                firstName: '',
-                lastName: '',
-                email: '',
-                role: '',
-                active: true
-            },
-            users: [
-                { firstName: 'ahmed', lastName: 'Ben salah', email: 'ahmed@gmail.com', role: 'Investor', active: true },
-                { firstName: 'Menyar', lastName: 'Debbebi', email: 'menyardebbebi14@gmail.com', role: 'Admin', active: true },
-                { firstName: 'Sami', lastName: 'Fki', email: 'sami@gmail.com', role: 'Landowner', active: false },
-                { firstName: 'Mohamed', lastName: 'Ben mohamed', email: 'mohamed@gmail.com', role: 'Investor', active: true }
-            ]
+            users: [],
+            loading: false,
+            saving: false,
+            error: '',
+            newUser: this.emptyUser()
         }
     },
+    async created() {
+        await this.loadUsers();
+    },
     methods: {
-        addUser() {
-            // Convert active string to boolean
-            const userToAdd = {
-                ...this.newUser,
-                active: this.newUser.active === 'true' || this.newUser.active === true
-            };
-
-            this.users.push(userToAdd);
-            this.showAddUserModal = false;
-            this.resetForm();
-        },
-        resetForm() {
-            this.newUser = {
+        emptyUser() {
+            return {
                 firstName: '',
                 lastName: '',
                 email: '',
+                phoneNumber: '',
+                password: '',
                 role: '',
+                entityType: 'individual',
                 active: true
             };
+        },
+        async loadUsers() {
+            this.loading = true;
+            this.error = '';
+            try {
+                const response = await AdminService.getUsers();
+                this.users = response.data || [];
+            } catch (error) {
+                this.error = error.response?.data?.message || error.message || this.$t('admin.users.loadFailed');
+            } finally {
+                this.loading = false;
+            }
+        },
+        async addUser() {
+            this.saving = true;
+            this.error = '';
+            try {
+                const response = await AdminService.createUser(this.newUser);
+                this.users.unshift(response.data);
+                this.showAddUserModal = false;
+                this.newUser = this.emptyUser();
+            } catch (error) {
+                this.error = error.response?.data?.message || error.message || this.$t('admin.users.addFailed');
+            } finally {
+                this.saving = false;
+            }
+        },
+        async toggleActive(user) {
+            const response = await AdminService.updateUser(user._id, { active: !user.active });
+            const index = this.users.findIndex((item) => item._id === user._id);
+            if (index !== -1) this.users.splice(index, 1, response.data);
+        },
+        async deleteUser(user) {
+            await AdminService.deleteUser(user._id);
+            this.users = this.users.filter((item) => item._id !== user._id);
+        },
+        roleLabel(role) {
+            return role || this.$t('admin.users.noRole');
         }
     }
 }

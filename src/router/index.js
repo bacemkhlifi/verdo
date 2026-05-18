@@ -97,10 +97,10 @@ const routes = [
         component: () => import("../pages/admin/Dashboard.vue"),
       },
       {
-        path: "products",
-        name: "AdminProducts",
-        component: () => import("../pages/admin/Products.vue"),
-        meta: { requiresPermission: "manage_products" },
+        path: "lands",
+        name: "AdminLands",
+        component: () => import("../pages/admin/Lands.vue"),
+        meta: { requiresPermission: "manage_lands" },
       },
       {
         path: "investments",

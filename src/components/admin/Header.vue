@@ -18,7 +18,7 @@
                             d="M.458 10C1.732 5.943 5.522 3 10 3s8.268 2.943 9.542 7c-1.274 4.057-5.064 7-9.542 7S1.732 14.057.458 10zM14 10a4 4 0 11-8 0 4 4 0 018 0z"
                             clip-rule="evenodd" />
                     </svg>
-                    Voir le site
+                    {{ $t('admin.nav.backToWebsite') }}
                 </router-link>
 
                 <!-- User Profile -->
@@ -26,7 +26,7 @@
                     <div class="flex flex-col items-end">
                         <span class="text-sm font-medium text-gray-900">{{ userData.firstName }} {{ userData.lastName
                         }}</span>
-                        <span class="text-xs text-gray-500">Administrateur</span>
+                        <span class="text-xs text-gray-500">{{ $t('admin.users.adminRole') }}</span>
                     </div>
                     <img :src="`https://ui-avatars.com/api/?name=${userData.firstName}+${userData.lastName}&background=22C55E&color=ffffff`"
                         :alt="userData.firstName" class="w-9 h-9 rounded-full border-2 border-green-500" />
@@ -50,10 +50,11 @@ export default {
     computed: {
         pageTitle() {
             const path = this.$route.path
-            if (path.includes('/admin/dashboard')) return 'Dashboard'
-            if (path.includes('/admin/products')) return 'Products'
-            if (path.includes('/admin/investments')) return 'Investments'
-            return 'Admin Panel'
+            if (path.includes('/admin/dashboard')) return this.$t('admin.nav.dashboard')
+            if (path.includes('/admin/users')) return this.$t('admin.nav.users')
+            if (path.includes('/admin/lands')) return this.$t('admin.nav.lands')
+            if (path.includes('/admin/investments')) return this.$t('admin.nav.investments')
+            return this.$t('header.adminPanel')
         }
     }
 }

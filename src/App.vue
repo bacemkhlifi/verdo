@@ -3,15 +3,16 @@
 </template>
 
 <script>
-import i18n from "./i18n";
+import i18n from './i18n';
+import VisitorService from './services/VisitorService';
 
 export default {
-  name: "App",
   created() {
-    const currentLocale = localStorage.getItem("language");
+    const currentLocale = localStorage.getItem('language');
     if (currentLocale) {
       i18n.locale = currentLocale;
     }
-  },
-};
+    VisitorService.trackVisit();
+  }
+}
 </script>
