@@ -21,7 +21,7 @@
     </div>
     <div class="assessment-grid">
       <aside class="facts-column">
-        <form @submit.prevent="analyze" class="input-form">
+        <form id="land-analysis" @submit.prevent="analyze" class="input-form">
           <section class="panel">
             <div class="section-heading">
               <span class="section-icon">⌖</span>
@@ -405,10 +405,48 @@
         </div>
         <span class="outline-badge">{{ copy.observed }}</span>
       </div>
+      <div
+        v-if="financeGate !== 'ready'"
+        id="finance-eligibility-note"
+        class="notice warning"
+        role="status"
+      >
+        <p>{{ copy[financeGate] }}</p>
+        <button
+          v-if="
+            !loading &&
+            ['financeRunAnalysis', 'stale', 'financeMissingEvidence'].includes(
+              financeGate,
+            )
+          "
+          type="button"
+          class="primary"
+          @click="analyze"
+        >
+          {{ copy.analyze }} ↗
+        </button>
+        <a v-else-if="!loading" href="#land-analysis"
+          >{{ copy.reviewLandAnalysis }} ↑</a
+        >
+      </div>
       <form @submit.prevent="calculateFinance" class="finance-form">
         <label
           >{{ copy.crop
-          }}<select v-model="financial.cropKey" required>
+          }}<select
+            v-model="financial.cropKey"
+            required
+            :disabled="financeGate !== 'ready'"
+            :aria-describedby="
+              financeGate !== 'ready' ? 'finance-eligibility-note' : undefined
+            "
+          >
+            <option value="" disabled>
+              {{
+                eligibleCrops.length
+                  ? copy.financeSelectCrop
+                  : copy.financeEmptyCrop
+              }}
+            </option>
             <option
               v-for="crop in eligibleCrops"
               :key="crop.cropKey"
@@ -442,7 +480,8 @@
         /></label>
         <button
           class="primary"
-          :disabled="estimating || !result || stale || !eligibleCrops.length"
+          :disabled="estimating || financeGate !== 'ready'"
+          :title="financeGate !== 'ready' ? copy[financeGate] : undefined"
         >
           {{ estimating ? copy.calculating : copy.calculate }} ↗
         </button>
@@ -613,6 +652,10 @@ import { markRaw } from "vue";
 import AuthService from "../services/AuthService";
 import GeoAIService from "../services/GeoAIService";
 import { feasibilityText } from "../utils/feasibilityText";
+import {
+  financeAvailability,
+  validFinanceCrop,
+} from "../utils/financeAvailability";
 let leafletPromise;
 function loadLeaflet() {
   if (window.L) return Promise.resolve(window.L);
@@ -688,7 +731,7 @@ export default {
       estimate: null,
       estimateSnapshot: null,
       financial: {
-        cropKey: "olive",
+        cropKey: "",
         areaHa: "",
         usablePct: 90,
         spacingRowM: "",
@@ -763,6 +806,14 @@ export default {
       return this.crops.filter((c) =>
         ["conditional", "recommended"].includes(c.status),
       );
+    },
+    financeGate() {
+      return financeAvailability({
+        loading: this.loading,
+        result: this.result,
+        stale: this.stale,
+        crops: this.crops,
+      });
     },
     bestCrop() {
       return this.eligibleCrops[0] || null;
@@ -840,6 +891,15 @@ export default {
     },
   },
   watch: {
+    eligibleCrops: {
+      immediate: true,
+      handler(crops) {
+        this.financial.cropKey = validFinanceCrop(
+          crops,
+          this.financial.cropKey,
+        );
+      },
+    },
     "form.lat"() {
       this.syncMarker();
     },

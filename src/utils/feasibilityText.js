@@ -633,6 +633,44 @@ fr.sensitivity =
   "Défavorable : rendement −25 %, prix −15 %, charges +15 %. Favorable : rendement +15 %, prix +10 %, charges inchangées. Le ROI concerne tout l’horizon indiqué ; le TRI est omis s’il est ambigu.";
 ar.sensitivity =
   "السلبي: إنتاج −25٪، سعر −15٪، تكاليف +15٪. الإيجابي: إنتاج +15٪، سعر +10٪ مع تكاليف ثابتة. العائد يشمل كامل المدة؛ يحذف معدل العائد الداخلي إذا كان ملتبساً.";
+Object.assign(en, {
+  financeRunAnalysis:
+    "Analyze the current parcel first. This list is populated automatically with recommended or conditional crops from the land assessment.",
+  financeLoading:
+    "Land analysis is in progress. Crop choices will appear when it finishes.",
+  financeMissingEvidence:
+    "The analysis has insufficient evidence to offer a crop. Check the data sources and add soil or water measurements, then analyze again.",
+  financeNoSuitable:
+    "No crop passed the current screening. Review the limiting factors above; investment calculation is unavailable for this result.",
+  financeSelectCrop: "Select a crop",
+  financeEmptyCrop: "No eligible crop yet",
+  reviewLandAnalysis: "Review the land assessment",
+});
+Object.assign(fr, {
+  financeRunAnalysis:
+    "Analysez d’abord le terrain actuel. Cette liste est remplie automatiquement avec les cultures recommandées ou proposées sous conditions par le diagnostic.",
+  financeLoading:
+    "Analyse du terrain en cours. Les cultures apparaîtront à la fin du diagnostic.",
+  financeMissingEvidence:
+    "Les données sont insuffisantes pour proposer une culture. Vérifiez les sources et ajoutez des mesures du sol ou de l’eau, puis relancez l’analyse.",
+  financeNoSuitable:
+    "Aucune culture ne satisfait les critères actuels. Consultez les facteurs limitants ci-dessus ; le calcul financier est indisponible pour ce résultat.",
+  financeSelectCrop: "Sélectionnez une culture",
+  financeEmptyCrop: "Aucune culture admissible pour le moment",
+  reviewLandAnalysis: "Revoir le diagnostic du terrain",
+});
+Object.assign(ar, {
+  financeRunAnalysis:
+    "حلل الأرض الحالية أولاً. تمتلئ القائمة تلقائياً بالمحاصيل الموصى بها أو المقبولة بشروط من تشخيص الأرض.",
+  financeLoading: "تحليل الأرض جار. ستظهر خيارات المحاصيل عند اكتماله.",
+  financeMissingEvidence:
+    "الأدلة غير كافية لاقتراح محصول. تحقق من مصادر البيانات وأضف قياسات التربة أو المياه ثم أعد التحليل.",
+  financeNoSuitable:
+    "لم يجتز أي محصول معايير الفحص الحالية. راجع العوامل المحددة أعلاه؛ الحساب المالي غير متاح لهذه النتيجة.",
+  financeSelectCrop: "اختر محصولاً",
+  financeEmptyCrop: "لا يوجد محصول مؤهل بعد",
+  reviewLandAnalysis: "مراجعة تشخيص الأرض",
+});
 export function feasibilityText(locale) {
   return String(locale).startsWith("fr")
     ? fr
