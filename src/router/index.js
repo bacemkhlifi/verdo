@@ -6,7 +6,7 @@ import Register from "../pages/Register.vue";
 import About from "../pages/About.vue";
 import OurImpact from "../pages/Impact.vue";
 import HowItWorks from "../pages/HowItWorks.vue";
-import GeoAIService from "../pages/GeoAIService.vue";
+import GeoAIService from "../pages/LandFeasibility.vue";
 import AdminLayout from "../layout/AdminLayout.vue";
 import AdminDashboard from "../pages/admin/Dashboard.vue";
 import Unauthorized from "../pages/Unauthorized.vue";

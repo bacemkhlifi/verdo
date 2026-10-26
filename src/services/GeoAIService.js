@@ -7,12 +7,7 @@ const baseUrl =
     ? "https://verdo-back.onrender.com"
     : "https://verdo-back.onrender.com/api");
 
-const API_URL = baseUrl.endsWith("/") ? baseUrl : `${baseUrl}/`;
-
-const getCurrentUserId = () => {
-  const currentUser = AuthService.getCurrentUser();
-  return currentUser?.user?._id || currentUser?.user?.id || null;
-};
+const API_URL = `${baseUrl.replace(/\/+$/, "").replace(/\/api(?:\/auth)?$/, "")}/api/`;
 
 const getAuthHeaders = () => {
   const currentUser = AuthService.getCurrentUser();
@@ -31,11 +26,11 @@ class GeoAIService {
   async analyze(payload) {
     const requestBody = {
       ...payload,
-      userId: getCurrentUserId(),
     };
 
     const config = {
       withCredentials: true,
+      timeout: 60000,
     };
 
     try {
@@ -44,16 +39,17 @@ class GeoAIService {
       config.headers = {};
     }
 
-    const response = await axios.post(`${API_URL}geoai/analyze`, requestBody, config);
+    const response = await axios.post(
+      `${API_URL}geoai/analyze`,
+      requestBody,
+      config,
+    );
 
     return response.data;
   }
 
   async getHistory() {
     const config = {
-      params: {
-        userId: getCurrentUserId(),
-      },
       withCredentials: true,
     };
 
@@ -65,6 +61,13 @@ class GeoAIService {
 
     const response = await axios.get(`${API_URL}geoai/history`, config);
 
+    return response.data;
+  }
+
+  async estimate(payload) {
+    const response = await axios.post(`${API_URL}geoai/estimate`, payload, {
+      timeout: 10000,
+    });
     return response.data;
   }
 }
