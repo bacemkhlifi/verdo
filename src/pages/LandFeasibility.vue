@@ -169,23 +169,6 @@
             </button>
           </div>
           <p class="map-hint">{{ drawing ? copy.drawHint : copy.mapHint }}</p>
-          <p v-if="locationChecking" class="notice" role="status">
-            {{ copy.locationChecking }}
-          </p>
-          <p
-            v-else-if="locationCheck && !locationBlocked"
-            class="notice warning"
-            role="status"
-          >
-            {{
-              locationCheck.status === "unavailable"
-                ? copy.locationUnavailable
-                : copy.locationUnverified
-            }}
-          </p>
-          <p v-if="locationBlocked" class="notice danger">
-            {{ locationMessage }}
-          </p>
           <div class="map-area" v-if="parcelArea">
             {{ display(parcelArea, "ha", 2) }}
             <span
@@ -197,6 +180,20 @@
             {{ copy.mapError }}
           </div>
         </div>
+        <p v-if="locationChecking" class="notice" role="status">
+          {{ copy.locationChecking }}
+        </p>
+        <p
+          v-else-if="locationCheck && !locationBlocked"
+          class="notice warning"
+          role="status"
+        >
+          {{
+            locationCheck.status === "unavailable"
+              ? copy.locationUnavailable
+              : copy.locationUnverified
+          }}
+        </p>
         <section class="panel verification">
           <div class="section-heading">
             <span class="section-icon">✓</span>
