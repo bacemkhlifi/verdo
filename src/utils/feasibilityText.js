@@ -671,6 +671,71 @@ Object.assign(ar, {
   financeEmptyCrop: "لا يوجد محصول مؤهل بعد",
   reviewLandAnalysis: "مراجعة تشخيص الأرض",
 });
+Object.assign(en, {
+  locationBlockedTitle: "This location cannot be analyzed as agricultural land",
+  locationUnavailable:
+    "The location check is temporarily unavailable. We cannot confirm whether this point is on open land. Check the satellite image before continuing, or try another point.",
+  locationSea:
+    "The selected point is in the sea. Please move the marker onto a land parcel to continue.",
+  locationWater:
+    "The selected point is inside a mapped water body. Please select a land parcel outside the water.",
+  locationBuilding:
+    "The selected point is inside a mapped building. Please move the marker onto an open land parcel.",
+  locationOther:
+    "The selected point is inside a mapped non-agricultural site, such as a quarry, landfill, cemetery or paved transport area. Please select another land parcel.",
+  locationChecking:
+    "Checking the selected location before agricultural analysis…",
+  locationUnverified:
+    "No confirmed exclusion is available for this point. Map coverage may be incomplete; check the satellite image and verify that this is open land before continuing.",
+  locationPointScope:
+    "This check applies to the selected point, not the whole drawn boundary. If the map is inaccurate, move the marker to a clearly open part of the parcel.",
+  selectDifferentLocation: "Select another land location",
+  locationFinanceBlocked:
+    "Crop and investment calculations are unavailable for this location. Select an open land parcel to continue.",
+});
+Object.assign(fr, {
+  locationBlockedTitle:
+    "Cet emplacement ne peut pas être analysé comme terrain agricole",
+  locationUnavailable:
+    "La vérification de l’emplacement est momentanément indisponible. Nous ne pouvons pas confirmer qu’il s’agit d’un terrain ouvert. Vérifiez l’image satellite avant de continuer ou essayez un autre point.",
+  locationSea:
+    "Le point sélectionné se trouve en mer. Déplacez le repère sur une parcelle terrestre pour continuer.",
+  locationWater:
+    "Le point sélectionné se trouve dans une zone d’eau cartographiée. Sélectionnez une parcelle terrestre en dehors de l’eau.",
+  locationBuilding:
+    "Le point sélectionné se trouve à l’intérieur d’un bâtiment cartographié. Déplacez le repère sur une parcelle de terrain ouverte.",
+  locationOther:
+    "Le point sélectionné se trouve dans un site cartographié non agricole, par exemple une carrière, une décharge, un cimetière ou une zone de transport aménagée. Sélectionnez une autre parcelle.",
+  locationChecking: "Vérification de l’emplacement avant l’analyse agricole…",
+  locationUnverified:
+    "Aucune exclusion n’est confirmée pour ce point. La carte peut être incomplète : vérifiez sur l’image satellite et sur place qu’il s’agit d’un terrain ouvert avant de continuer.",
+  locationPointScope:
+    "Cette vérification concerne le point sélectionné, pas toute la parcelle dessinée. Si la carte est inexacte, placez le repère sur une partie clairement ouverte du terrain.",
+  selectDifferentLocation: "Sélectionner un autre emplacement terrestre",
+  locationFinanceBlocked:
+    "Les calculs de cultures et d’investissement sont indisponibles pour cet emplacement. Sélectionnez une parcelle de terrain ouverte pour continuer.",
+});
+Object.assign(ar, {
+  locationBlockedTitle: "لا يمكن تحليل هذا الموقع كأرض زراعية",
+  locationUnavailable:
+    "التحقق من الموقع غير متاح مؤقتاً. لا يمكننا تأكيد أن النقطة تقع على أرض مفتوحة. تحقق من صورة القمر الصناعي قبل المتابعة أو جرب نقطة أخرى.",
+  locationSea:
+    "النقطة المختارة تقع في البحر. انقل العلامة إلى قطعة أرض للمتابعة.",
+  locationWater:
+    "النقطة المختارة تقع داخل مسطح مائي موضح على الخريطة. اختر أرضاً خارج المياه.",
+  locationBuilding:
+    "النقطة المختارة تقع داخل مبنى موضح على الخريطة. انقل العلامة إلى قطعة أرض مفتوحة.",
+  locationOther:
+    "النقطة المختارة تقع داخل موقع غير زراعي موضح على الخريطة مثل مقلع أو مكب نفايات أو مقبرة أو منطقة نقل معبدة. اختر قطعة أرض أخرى.",
+  locationChecking: "جار التحقق من الموقع قبل التحليل الزراعي…",
+  locationUnverified:
+    "لا يوجد استبعاد مؤكد لهذه النقطة. قد تكون الخريطة غير مكتملة؛ تحقق من صورة القمر الصناعي وميدانياً أنها أرض مفتوحة قبل المتابعة.",
+  locationPointScope:
+    "هذا الفحص يخص النقطة المختارة وليس كامل حدود القطعة المرسومة. إذا كانت الخريطة غير دقيقة فانقل العلامة إلى جزء مفتوح بوضوح من الأرض.",
+  selectDifferentLocation: "اختر موقعاً آخر على اليابسة",
+  locationFinanceBlocked:
+    "حسابات المحاصيل والاستثمار غير متاحة لهذا الموقع. اختر قطعة أرض مفتوحة للمتابعة.",
+});
 export function feasibilityText(locale) {
   return String(locale).startsWith("fr")
     ? fr

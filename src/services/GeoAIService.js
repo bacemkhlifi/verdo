@@ -23,6 +23,14 @@ const getAuthHeaders = () => {
 };
 
 class GeoAIService {
+  async checkLocation(lat, lon) {
+    const response = await axios.post(
+      `${API_URL}geoai/location-check`,
+      { lat, lon },
+      { timeout: 12000 },
+    );
+    return response.data.result;
+  }
   async analyze(payload) {
     const requestBody = {
       ...payload,

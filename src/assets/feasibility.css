@@ -629,6 +629,14 @@ button:disabled {
   line-height: 1.6;
   margin: 0 0 16px;
 }
+.location-exclusion {
+  font-size: 14px;
+  padding: 18px 22px;
+  border-inline-start-width: 5px;
+}
+.location-exclusion strong {
+  font-size: 17px;
+}
 .danger {
   color: #9e3d35;
   background: #fff0eb;

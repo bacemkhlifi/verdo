@@ -8,14 +8,30 @@
       </div>
       <div class="hero-actions">
         <span class="country">⌖ Tunisie</span
-        ><button @click="printReport" :disabled="!result || stale">
+        ><button
+          @click="printReport"
+          :disabled="!result || stale || locationBlocked"
+        >
           {{ copy.print }}</button
-        ><button @click="download" :disabled="!result || stale">
+        ><button
+          @click="download"
+          :disabled="!result || stale || locationBlocked"
+        >
           {{ copy.download }}
         </button>
       </div>
     </header>
     <div v-if="error" class="notice danger" role="alert">{{ error }}</div>
+    <div
+      v-if="locationBlocked"
+      class="notice danger location-exclusion"
+      role="alert"
+    >
+      <strong>{{ copy.locationBlockedTitle }}</strong>
+      <p>{{ locationMessage }}</p>
+      <p class="micro">{{ copy.locationPointScope }}</p>
+      <a href="#land-analysis">{{ copy.selectDifferentLocation }} ↑</a>
+    </div>
     <div v-if="stale" class="notice warning" role="status">
       {{ copy.stale }}
     </div>
@@ -111,7 +127,8 @@
             <button
               class="primary analyze-button"
               type="submit"
-              :disabled="loading"
+              :disabled="loading || locationChecking || locationBlocked"
+              :title="locationBlocked ? locationMessage : undefined"
             >
               {{ loading ? copy.analyzing : copy.analyze }}
               <span v-if="!loading">↗</span>
@@ -152,6 +169,23 @@
             </button>
           </div>
           <p class="map-hint">{{ drawing ? copy.drawHint : copy.mapHint }}</p>
+          <p v-if="locationChecking" class="notice" role="status">
+            {{ copy.locationChecking }}
+          </p>
+          <p
+            v-else-if="locationCheck && !locationBlocked"
+            class="notice warning"
+            role="status"
+          >
+            {{
+              locationCheck.status === "unavailable"
+                ? copy.locationUnavailable
+                : copy.locationUnverified
+            }}
+          </p>
+          <p v-if="locationBlocked" class="notice danger">
+            {{ locationMessage }}
+          </p>
           <div class="map-area" v-if="parcelArea">
             {{ display(parcelArea, "ha", 2) }}
             <span
@@ -205,7 +239,11 @@
             <span class="section-icon">✧</span>
             <h2>{{ copy.result }}</h2>
           </div>
-          <template v-if="result">
+          <div v-if="locationBlocked" class="empty-state">
+            <h3>{{ copy.locationBlockedTitle }}</h3>
+            <p>{{ locationMessage }}</p>
+          </div>
+          <template v-else-if="result">
             <div class="potential-summary">
               <div
                 class="score-ring"
@@ -712,6 +750,11 @@ export default {
       form: emptyForm(),
       result: null,
       loading: false,
+      locationCheck: null,
+      locationCheckedKey: null,
+      locationChecking: false,
+      locationTimer: null,
+      locationRequest: 0,
       error: "",
       saveWarning: null,
       requestSnapshot: null,
@@ -778,6 +821,30 @@ export default {
     };
   },
   computed: {
+    locationKey() {
+      return `${this.form.lat},${this.form.lon}`;
+    },
+    currentLocationCheck() {
+      if (this.locationCheckedKey === this.locationKey)
+        return this.locationCheck;
+      if (!this.stale && this.result) return this.result.landUseCheck;
+      return null;
+    },
+    locationBlocked() {
+      return this.currentLocationCheck?.isAgricultureAvailable === false;
+    },
+    locationMessage() {
+      const kind = this.currentLocationCheck?.classification;
+      return this.copy[
+        kind === "sea"
+          ? "locationSea"
+          : kind === "water"
+            ? "locationWater"
+            : kind === "built_up"
+              ? "locationBuilding"
+              : "locationOther"
+      ];
+    },
     copy() {
       return feasibilityText(this.$i18n.locale);
     },
@@ -803,11 +870,14 @@ export default {
         : [];
     },
     eligibleCrops() {
+      if (this.locationBlocked) return [];
       return this.crops.filter((c) =>
         ["conditional", "recommended"].includes(c.status),
       );
     },
     financeGate() {
+      if (this.locationBlocked) return "locationFinanceBlocked";
+      if (this.locationChecking) return "locationChecking";
       return financeAvailability({
         loading: this.loading,
         result: this.result,
@@ -819,6 +889,7 @@ export default {
       return this.eligibleCrops[0] || null;
     },
     activeCrop() {
+      if (this.locationBlocked) return null;
       return (
         this.crops.find((c) => c.cropKey === this.selectedCrop) ||
         this.crops[0] ||
@@ -902,9 +973,11 @@ export default {
     },
     "form.lat"() {
       this.syncMarker();
+      this.scheduleLocationCheck();
     },
     "form.lon"() {
       this.syncMarker();
+      this.scheduleLocationCheck();
     },
     mapType() {
       this.updateMapLayer();
@@ -918,6 +991,7 @@ export default {
     },
   },
   async mounted() {
+    this.scheduleLocationCheck();
     try {
       const L = await loadLeaflet();
       if (!this.$refs.mapContainer) return;
@@ -946,9 +1020,60 @@ export default {
     if (!this.isGuest) await this.loadHistory();
   },
   beforeUnmount() {
+    clearTimeout(this.locationTimer);
+    this.locationRequest++;
     this.map?.remove();
   },
   methods: {
+    scheduleLocationCheck() {
+      clearTimeout(this.locationTimer);
+      this.locationRequest++;
+      this.locationCheck = null;
+      this.locationCheckedKey = null;
+      this.locationChecking = false;
+      const lat = Number(this.form.lat),
+        lon = Number(this.form.lon);
+      if (
+        this.form.lat === "" ||
+        this.form.lon === "" ||
+        !Number.isFinite(lat) ||
+        !Number.isFinite(lon) ||
+        lat < 30 ||
+        lat > 38 ||
+        lon < 7 ||
+        lon > 12
+      )
+        return;
+      this.locationChecking = true;
+      this.locationTimer = setTimeout(() => this.checkSelectedLocation(), 600);
+    },
+    async checkSelectedLocation() {
+      const key = this.locationKey,
+        request = ++this.locationRequest;
+      this.locationChecking = true;
+      try {
+        const result = await GeoAIService.checkLocation(
+          Number(this.form.lat),
+          Number(this.form.lon),
+        );
+        if (request !== this.locationRequest || key !== this.locationKey)
+          return;
+        this.locationCheck = result;
+        this.locationCheckedKey = key;
+        if (result.isAgricultureAvailable === false) this.estimate = null;
+      } catch {
+        if (request !== this.locationRequest || key !== this.locationKey)
+          return;
+        this.locationCheck = {
+          classification: "unknown",
+          status: "unavailable",
+          isAgricultureAvailable: null,
+        };
+        this.locationCheckedKey = key;
+      } finally {
+        if (request === this.locationRequest) this.locationChecking = false;
+      }
+    },
     display(value, unit = "", digits = 1) {
       if (
         value === null ||
@@ -1076,6 +1201,7 @@ export default {
     },
     async analyze() {
       if (this.loading) return;
+      if (this.locationBlocked || this.locationChecking) return;
       this.loading = true;
       this.error = "";
       this.saveWarning = null;
@@ -1127,6 +1253,8 @@ export default {
     async calculateFinance() {
       this.financeError = "";
       if (
+        this.locationBlocked ||
+        this.locationChecking ||
         !this.result ||
         this.stale ||
         !this.eligibleCrops.some((c) => c.cropKey === this.financial.cropKey)
