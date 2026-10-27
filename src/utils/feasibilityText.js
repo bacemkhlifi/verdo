@@ -736,6 +736,108 @@ Object.assign(ar, {
   locationFinanceBlocked:
     "حسابات المحاصيل والاستثمار غير متاحة لهذا الموقع. اختر قطعة أرض مفتوحة للمتابعة.",
 });
+Object.assign(en, {
+  preliminaryScreening: "Preliminary screening · not a validated ranking",
+  heatDays: "Hot days (≥35°C)",
+  frostDays: "Frost days (≤0°C)",
+  historyResolutionNote:
+    "ERA5 modeled history (~25 km grid), not an on-site weather station. Annual frost counts do not measure flowering frost or winter chill.",
+  olderScreeningNote:
+    "This saved analysis uses an older screening method. Analyze this parcel again for measurement coverage and updated checks.",
+  noConfirmedWinner: "No best crop confirmed yet",
+  rankingExplanation:
+    "These provisional rules identify candidates and limitations. Missing measurements cannot establish a reliable best crop, yield or return. Compare the evidence and arrange a local agronomic assessment.",
+  evidenceBarExplanation:
+    "Bars show available screening measurements, not crop performance. Options are grouped by constraints; their order does not predict yield or profitability.",
+  screeningMeasurements: "Available screening measurements",
+  measures: "measures",
+  chillUnverified: "Winter chill not verified",
+  criticalChecksNote:
+    "Key checks are missing for this crop. Favourable annual averages cannot replace cultivar-specific winter chill, flowering frost and pollination checks.",
+  pistachioCaution:
+    "Pistachio: dry-climate tolerance does not guarantee commercial yield. Verify winter chill for the chosen female and male cultivars, flowering overlap, spring frost, root-zone drainage and a sustainable seasonal water budget.",
+  climatePeriodUnknown: "NASA POWER climatology · period not supplied",
+  daysPerYear: "days/year",
+  rainRange: "Historical annual rainfall range",
+  conditional: "Candidate · checks required",
+  not_suitable: "Screening limitation",
+  externalWarning:
+    "The GeoAI service is unavailable. Other sources below are used where available; this does not validate a crop recommendation.",
+});
+Object.assign(fr, {
+  preliminaryScreening: "Diagnostic préliminaire · classement non validé",
+  heatDays: "Jours de chaleur (≥35 °C)",
+  frostDays: "Jours de gel (≤0 °C)",
+  historyResolutionNote:
+    "Historique modélisé ERA5 (maille d’environ 25 km), pas une station sur le terrain. Le nombre annuel de jours de gel ne mesure ni le gel à la floraison ni le froid hivernal.",
+  olderScreeningNote:
+    "Cette analyse enregistrée utilise l’ancienne méthode. Relancez le diagnostic pour afficher la couverture des mesures et les nouvelles vérifications.",
+  noConfirmedWinner: "Aucune meilleure culture confirmée à ce stade",
+  rankingExplanation:
+    "Ces règles provisoires repèrent des pistes et des contraintes. Les mesures manquantes ne permettent pas de confirmer la meilleure culture, son rendement ou sa rentabilité. Comparez les données et faites vérifier le terrain par un agronome local.",
+  evidenceBarExplanation:
+    "Les barres indiquent les mesures disponibles, pas la performance des cultures. Les options sont regroupées par contraintes ; leur ordre ne prédit ni le rendement ni la rentabilité.",
+  screeningMeasurements: "Mesures disponibles pour le diagnostic",
+  measures: "mesures",
+  chillUnverified: "Froid hivernal non vérifié",
+  criticalChecksNote:
+    "Des vérifications essentielles manquent pour cette culture. Des moyennes annuelles favorables ne remplacent pas la vérification du froid hivernal selon la variété, du gel à la floraison et de la pollinisation.",
+  pistachioCaution:
+    "Pistachier : la tolérance à la sécheresse ne garantit pas un rendement commercial. Vérifiez le froid hivernal des variétés femelle et mâle, la concordance de floraison, le gel printanier, le drainage du sol racinaire et un bilan hydrique saisonnier durable.",
+  climatePeriodUnknown: "Climatologie NASA POWER · période non fournie",
+  daysPerYear: "jours/an",
+  rainRange: "Pluie annuelle : plage historique",
+  conditional: "Piste à vérifier",
+  not_suitable: "Limitation détectée",
+  externalWarning:
+    "Le service GeoAI est indisponible. Les autres sources ci-dessous sont utilisées lorsqu’elles sont disponibles ; cela ne valide pas une recommandation de culture.",
+});
+Object.assign(ar, {
+  preliminaryScreening: "فحص أولي · ترتيب غير معتمد",
+  heatDays: "أيام الحرارة (≥35°م)",
+  frostDays: "أيام الصقيع (≤0°م)",
+  historyResolutionNote:
+    "سجل مناخي من نموذج ERA5 بشبكة نحو 25 كم وليس محطة في الأرض. عدد أيام الصقيع السنوي لا يقيس الصقيع أثناء الإزهار أو البرودة الشتوية.",
+  olderScreeningNote:
+    "هذا التحليل المحفوظ يستخدم المنهج القديم. أعد تحليل الأرض لعرض تغطية القياسات والفحوص المحدثة.",
+  noConfirmedWinner: "لم يتم تأكيد أفضل محصول بعد",
+  rankingExplanation:
+    "هذه القواعد الأولية تحدد خيارات وقيوداً. القياسات الناقصة لا تسمح بتأكيد أفضل محصول أو إنتاجه أو ربحيته. قارن الأدلة واستعن بمهندس زراعي محلي لفحص الأرض.",
+  evidenceBarExplanation:
+    "الأشرطة تبين القياسات المتاحة وليس أداء المحاصيل. الخيارات مجمعة حسب القيود؛ ترتيبها لا يتنبأ بالإنتاج أو الربحية.",
+  screeningMeasurements: "القياسات المتاحة للفحص",
+  measures: "قياسات",
+  chillUnverified: "البرودة الشتوية غير متحققة",
+  criticalChecksNote:
+    "فحوص أساسية ناقصة لهذا المحصول. المتوسطات السنوية الملائمة لا تعوض التحقق من البرودة الشتوية حسب الصنف والصقيع أثناء الإزهار والتلقيح.",
+  pistachioCaution:
+    "الفستق: تحمل الجفاف لا يضمن إنتاجاً تجارياً. تحقق من البرودة الشتوية للصنفين الأنثوي والذكري وتزامن الإزهار والصقيع الربيعي وصرف التربة وميزانية مياه موسمية مستدامة.",
+  climatePeriodUnknown: "مناخ NASA POWER · الفترة غير متاحة",
+  daysPerYear: "يوم/سنة",
+  rainRange: "النطاق التاريخي للأمطار السنوية",
+  conditional: "خيار يحتاج تحققاً",
+  not_suitable: "قيد في الفحص",
+  externalWarning:
+    "خدمة GeoAI غير متاحة. تستخدم المصادر الأخرى المتاحة أدناه؛ وهذا لا يعتمد توصية زراعية.",
+});
+Object.assign(en.missingNames, {
+  winterChill: "Cultivar-specific winter chill",
+  springFrost: "Frost during the actual flowering window",
+  pollination: "Compatible pollinator and flowering overlap",
+  localAdaptation: "Local cultivar adaptation",
+});
+Object.assign(fr.missingNames, {
+  winterChill: "Froid hivernal selon la variété",
+  springFrost: "Gel pendant la période réelle de floraison",
+  pollination: "Pollinisateur compatible et concordance de floraison",
+  localAdaptation: "Adaptation variétale locale",
+});
+Object.assign(ar.missingNames, {
+  winterChill: "البرودة الشتوية حسب الصنف",
+  springFrost: "الصقيع خلال فترة الإزهار الفعلية",
+  pollination: "صنف ملقح متوافق وتزامن الإزهار",
+  localAdaptation: "تكيف الصنف محلياً",
+});
 export function feasibilityText(locale) {
   return String(locale).startsWith("fr")
     ? fr

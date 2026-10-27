@@ -95,7 +95,14 @@
               </div>
             </dl>
             <p class="micro" v-if="result">
-              {{ result.indicators?.date_range || "NASA POWER · 2014–2024" }}
+              {{
+                result.indicators?.date_range ||
+                result.apiInsights?.nasaPower?.period ||
+                copy.climatePeriodUnknown
+              }}
+            </p>
+            <p class="micro" v-if="result?.apiInsights?.climateHistory">
+              {{ copy.historyResolutionNote }}
             </p>
           </section>
           <section class="panel">
@@ -242,24 +249,19 @@
           </div>
           <template v-else-if="result">
             <div class="potential-summary">
-              <div
-                class="score-ring"
-                :style="{ '--score': bestCrop ? bestCrop.score + '%' : '0%' }"
-              >
-                <strong>{{ bestCrop ? bestCrop.score : "—" }}</strong
-                ><span>/100</span>
-              </div>
               <div>
-                <p class="eyebrow">{{ copy.score }}</p>
-                <h3>
-                  {{
-                    bestCrop ? copy[bestCrop.cropKey] : copy.scoreUnavailable
-                  }}
-                </h3>
-                <p>{{ copy.scoreNote }}</p>
+                <p class="eyebrow">{{ copy.preliminaryScreening }}</p>
+                <h3>{{ copy.noConfirmedWinner }}</h3>
+                <p>{{ copy.rankingExplanation }}</p>
               </div>
             </div>
             <p class="confidence">◌ {{ copy.confidence }}</p>
+            <p
+              class="notice warning"
+              v-if="result.screeningModelVersion !== 'tn-screening-2'"
+            >
+              {{ copy.olderScreeningNote }}
+            </p>
             <div
               v-if="result.siteAssessment?.status === 'insufficient_data'"
               class="notice warning"
@@ -276,6 +278,7 @@
               <h3>{{ copy.potential }}</h3>
               <span>{{ crops.length }} {{ copy.options }}</span>
             </div>
+            <p class="micro">{{ copy.evidenceBarExplanation }}</p>
             <button
               v-for="crop in crops"
               :key="crop.cropKey"
@@ -288,17 +291,32 @@
               }}</span
               ><span class="crop-name"
                 >{{ copy[crop.cropKey]
-                }}<small :class="crop.status">{{
-                  copy[crop.status]
+                }}<small :class="crop.status">{{ copy[crop.status] }}</small
+                ><small v-if="crop.criticalMissing?.includes('winterChill')">{{
+                  copy.chillUnverified
                 }}</small></span
               >
-              <span class="crop-meter"
+              <span
+                class="crop-meter evidence-meter"
+                :title="copy.evidenceBarExplanation"
+                aria-hidden="true"
                 ><span
-                  :style="{ width: (crop.score ?? 0) + '%' }"
-                  :class="crop.status"
+                  :style="{
+                    width:
+                      (crop.evidenceCoverage
+                        ? (100 * crop.evidenceCoverage.knownFactors) /
+                          crop.evidenceCoverage.totalFactors
+                        : 0) + '%',
+                  }"
                 ></span></span
-              ><span class="crop-score"
-                >{{ crop.score ?? "—" }}<small>/100</small></span
+              ><span class="crop-score" :aria-label="copy.screeningMeasurements"
+                >{{
+                  crop.evidenceCoverage
+                    ? crop.evidenceCoverage.knownFactors +
+                      "/" +
+                      crop.evidenceCoverage.totalFactors
+                    : "—"
+                }}<small>{{ copy.measures }}</small></span
               >
             </button>
           </template>
@@ -320,6 +338,12 @@
           }}</span>
           <p v-if="activeCrop.provisional" class="micro">
             {{ copy.provisional }}
+          </p>
+          <p class="notice warning" v-if="activeCrop.criticalMissing?.length">
+            {{ copy.criticalChecksNote }}
+          </p>
+          <p class="micro" v-if="activeCrop.cropKey === 'pistachio'">
+            {{ copy.pistachioCaution }}
           </p>
           <h4 v-if="activeCrop.exclusions?.length">{{ copy.exclusions }}</h4>
           <ul>
@@ -353,6 +377,7 @@
                           temp: "temperature",
                           hot: "heatDays",
                           frost: "frostDays",
+                          salinity: "ec",
                         }[factor.factor]
                       ] ||
                       copy.missingNames[
@@ -882,7 +907,7 @@ export default {
         crops: this.crops,
       });
     },
-    bestCrop() {
+    firstCandidate() {
       return this.eligibleCrops[0] || null;
     },
     activeCrop() {
@@ -927,6 +952,35 @@ export default {
           key: "wind",
           label: this.copy.wind,
           value: this.display(w?.current?.windKph, "km/h", 0),
+        },
+        {
+          key: "heatDays",
+          label: this.copy.heatDays,
+          value: this.display(
+            i?.hot_days_ge_35_per_year_est,
+            this.copy.daysPerYear,
+            1,
+          ),
+        },
+        {
+          key: "frostDays",
+          label: this.copy.frostDays,
+          value: this.display(
+            i?.frost_days_le_0_per_year_est,
+            this.copy.daysPerYear,
+            1,
+          ),
+        },
+        {
+          key: "rainRange",
+          label: this.copy.rainRange,
+          value:
+            i?.annual_rainfall_min_mm != null &&
+            i?.annual_rainfall_max_mm != null
+              ? this.display(i.annual_rainfall_min_mm, "", 0) +
+                "–" +
+                this.display(i.annual_rainfall_max_mm, "mm", 0)
+              : "—",
         },
         {
           key: "recentRain",
@@ -1233,7 +1287,7 @@ export default {
         this.requestSnapshot = snapshot;
         this.saveWarning = response.saveWarning;
         this.selectedCrop =
-          this.bestCrop?.cropKey || this.crops[0]?.cropKey || "olive";
+          this.firstCandidate?.cropKey || this.crops[0]?.cropKey || "olive";
         this.estimate = null;
         if (!this.isGuest) await this.loadHistory();
       } catch (error) {
@@ -1316,7 +1370,8 @@ export default {
       this.requestSnapshot = this.inputKey;
       this.estimate = null;
       this.error = "";
-      this.selectedCrop = this.bestCrop?.cropKey || this.crops[0]?.cropKey;
+      this.selectedCrop =
+        this.firstCandidate?.cropKey || this.crops[0]?.cropKey;
     },
     printReport() {
       if (!this.result || this.stale) return;

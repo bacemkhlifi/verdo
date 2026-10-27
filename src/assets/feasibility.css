@@ -527,6 +527,12 @@ button:disabled {
   background: #59985c;
   border-radius: 10px;
 }
+.crop-meter.evidence-meter > span {
+  background: #668396;
+}
+.crop-score small {
+  display: block;
+}
 .crop-meter .conditional {
   background: #b2a25b;
 }
